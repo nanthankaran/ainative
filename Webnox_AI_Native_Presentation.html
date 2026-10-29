@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From AI-Assisted to AI-Native | Webnox Technologies KT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #131b2e;
+      --card-border: #1e293b;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Top Progress Bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+      width: 16.66%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Header Nav */
+    header {
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #2563eb, #0284c7);
+      color: white;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .brand-title span {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+
+    /* Main Slides Viewport */
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 2.5rem;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 2.5rem 4rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px) scale(0.98);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 1350px;
+      margin: 0 auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+    }
+
+    /* Typography & Titles */
+    .slide-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      box-shadow: 0 0 10px var(--accent-blue);
+    }
+
+    .slide-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 900px;
+      line-height: 1.5;
+    }
+
+    /* Cards & Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      align-items: stretch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .card-list li {
+      font-size: 1.02rem;
+      line-height: 1.5;
+      color: var(--text-sub);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .card-list li span.icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Pill Badges */
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-danger { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-success { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+    .badge-info { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-amber { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+
+    /* Comparison Table */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      background: rgba(30, 41, 59, 0.7);
+      padding: 1.1rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      border-bottom: 1px solid var(--card-border);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    td {
+      padding: 1.1rem 1.4rem;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-sub);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    td.highlight {
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+    td.faint {
+      color: var(--text-muted);
+    }
+
+    /* Live Data Snippets */
+    .code-box {
+      font-family: 'JetBrains Mono', monospace;
+      background: #070a13;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      margin-top: 0.8rem;
+      line-height: 1.4;
+      overflow-x: auto;
+    }
+
+    /* Footer Controls */
+    footer {
+      padding: 1.2rem 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .nav-hints {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .key-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      margin-right: 4px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: #1e293b;
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      border: none;
+      color: white;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+      color: white;
+    }
+
+    /* Department Pipeline Cards */
+    .dept-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border-top: 3px solid var(--accent-blue);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .dept-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dept-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+    .dept-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .dept-connect {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.08);
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-top: auto;
+    }
+
+    /* Modal / Speaker Notes Overlay */
+    #speaker-modal {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      width: 420px;
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      padding: 1.2rem;
+      z-index: 200;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+    #speaker-modal.open {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.5rem;
+    }
+    .modal-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .modal-body {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-sub);
+      max-height: 220px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <header>
+    <div class="brand">
+      <div class="brand-badge">WEBNOX</div>
+      <div class="brand-title">From AI-Assisted to <span>AI-Native</span></div>
+    </div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 6</div>
+  </header>
+
+  <main>
+    <!-- SLIDE 1: Title & The Vision -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-tag">Webnox Technologies | All-Hands & Team Leads KT</div>
+      <h1 class="slide-title">From AI-Assisted to AI-Native</h1>
+      <p class="slide-subtitle">
+        How Connecting Live Production Data (GSC API + Server Logs) to AI Agents Transforms Our Workflows Across Every Webnox Department.
+      </p>
+
+      <div class="grid-3" style="margin-top: 1.5rem;">
+        <div class="card" style="border-top: 3px solid var(--accent-blue);">
+          <div class="card-title" style="color: var(--accent-blue);">
+            <span>⚡</span> What is "AI-Native"?
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+            Not just opening ChatGPT to reword text. AI-Native means our live APIs, servers, databases, and client telemetry are <strong>permanently wired</strong> into automated AI workflows.
+          </p>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--accent-green);">
+          <div class="card-title" style="color: var(--accent-green);">
+            <span>🔗</span> Real Proof: GSC + Server
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+            We tested this live on production (EzyCash, Cloudways). We diagnosed 4 critical business problems in <strong>5 minutes</strong> that usually take 3 to 4 days of cross-department friction.
+          </p>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--accent-amber);">
+          <div class="card-title" style="color: var(--accent-amber);">
+            <span>🏢</span> The All-Department Vision
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+            SEO, Content, Social Media, WordPress, Full-Stack Dev, DevOps, and Sales/BD — every team gets connected into a unified <strong>Webnox Company OS</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; align-items: center; gap: 15px;">
+        <div style="font-weight: 700; color: var(--accent-green); font-size: 1.05rem;">Presented by: Karan Singh</div>
+        <div style="color: var(--text-muted); font-size: 0.9rem;">| DevOps & Systems Development Lead</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Paradigm Shift (AI-Assisted vs. AI-Native) -->
+    <div class="slide" id="slide-2">
+      <div class="slide-tag">The Elephant In The Room</div>
+      <h2 class="slide-title">"Our Devs Already Use Antigravity. Why AI-Native?"</h2>
+      <p class="slide-subtitle">
+        Because writing code is only <strong>20% of client delivery</strong>. The remaining <strong>80% is where our projects get delayed</strong>: diagnosis, handoffs, and debugging.
+      </p>
+
+      <!-- Reality Check Highlight Box -->
+      <div style="background: rgba(56, 189, 248, 0.08); border-left: 4px solid var(--accent-blue); padding: 0.85rem 1.4rem; border-radius: 8px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size: 0.98rem; color: var(--text-main);">
+          ⚡ <strong>Current Reality:</strong> A developer opens Antigravity locally to write functions fast. But Antigravity has <em>zero visibility</em> into Google Search Console rankings, server logs, or SEO team needs until someone manually writes a ticket 3 days later!
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);">
+          <div class="card-title" style="color: #f87171;">
+            <span>❌</span> Level 1: Antigravity in Isolation (Where We Are)
+            <span class="badge badge-danger">Siloed Tool</span>
+          </div>
+          <ul class="card-list">
+            <li>
+              <span class="icon">🛑</span>
+              <div><strong>Isolated to Dev Editors:</strong> Only developers use Antigravity. SEO, Content, and Sales are still stuck in manual spreadsheets.</div>
+            </li>
+            <li>
+              <span class="icon">🛑</span>
+              <div><strong>Blind to Production Telemetry:</strong> Local Antigravity cannot see live GSC indexing drops, 500 errors, or database lockups.</div>
+            </li>
+            <li>
+              <span class="icon">🛑</span>
+              <div><strong>3-Day Handoff Lag:</strong> SEO spots a traffic drop -> writes an email -> Dev reads it 2 days later -> Dev asks DevOps for logs -> Dev finally opens Antigravity.</div>
+            </li>
+            <li>
+              <span class="icon">🛑</span>
+              <div><strong>Ad-Hoc Prompting:</strong> Every developer writes their own prompts from scratch; solutions are never standardized across Webnox.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-color: rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.03);">
+          <div class="card-title" style="color: var(--accent-green);">
+            <span>🚀</span> Level 2 & 3: Antigravity as Company OS (AI-Native)
+            <span class="badge badge-success">Connected Ecosystem</span>
+          </div>
+          <ul class="card-list">
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>Direct Systems Telemetry:</strong> Antigravity is wired directly to GSC APIs, Cloudways SFTP, and live MySQL databases.</div>
+            </li>
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>Multi-Department Pipeline:</strong> SEO runs an audit skill -> Antigravity generates clean code specs -> Dev validates and deploys.</div>
+            </li>
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>Instant Root-Cause Triage:</strong> Solves complex problems (like ranking drops or server slowdowns) in <strong>5 minutes</strong> instead of 3 days.</div>
+            </li>
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>Shared Company Skills:</strong> Standardized, version-controlled `.md` skills in Git so any team lead can run high-precision audits.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: The Live Proof (GSC + Server Integration) -->
+    <div class="slide" id="slide-3">
+      <div class="slide-tag">Live Production Case Study</div>
+      <h2 class="slide-title">Why Connecting Live Data Is 10x Useful</h2>
+      <p class="slide-subtitle">
+        Audit on <strong>ezycashforcars.com.au</strong>: Ingested 16 months of GSC search telemetry + 500MB server logs into AI in 5 minutes.
+      </p>
+
+      <div class="grid-4">
+        <div class="card" style="border-left: 4px solid var(--accent-amber);">
+          <div class="card-title" style="color: var(--accent-amber); font-size: 1.15rem;">
+            <span>1.</span> Core Money Pages De-Indexed
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
+            GSC URL Inspection API showed 4 core money pages (Brisbane, Sydney Scrap, etc.) were flagged with <code>noindex</code> in Yoast SEO.
+          </p>
+          <div class="code-box">
+            Discovery: 64.9% traffic collapse in 7 days detected instantly.
+          </div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-blue);">
+          <div class="card-title" style="color: var(--accent-blue); font-size: 1.15rem;">
+            <span>2.</span> Position #4 Cannibalization Trap
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
+            GSC Query API revealed <strong>86,634 impressions</strong> on commercial terms captured only 0.71% CTR because generic homepage ranked instead of target city page.
+          </p>
+          <div class="code-box">
+            Solution: Intent rewrites & canonical adjustments queued for Dev.
+          </div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-green);">
+          <div class="card-title" style="color: var(--accent-green); font-size: 1.15rem;">
+            <span>3.</span> Server Slow Query Bottlenecks
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
+            Cloudways <code>php-app.slow.log</code> cross-referenced with GSC revealed ActionScheduler queue runner executing during live visitor requests (>5.0s response times).
+          </p>
+          <div class="code-box">
+            Solution: Offloaded heavy jobs to system crontab in 2 lines.
+          </div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-rose);">
+          <div class="card-title" style="color: var(--accent-rose); font-size: 1.15rem;">
+            <span>4.</span> Multi-Click Lead Duplication
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
+            Server access logs showed mobile visitors tapping "Get Quote" 6 times in 10s due to lack of JS button debounce, flooding sales inbox with duplicates.
+          </p>
+          <div class="code-box">
+            Solution: Added JS button debounce script to stop spam.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Speed & ROI Table -->
+    <div class="slide" id="slide-4">
+      <div class="slide-tag">Operational Impact & ROI</div>
+      <h2 class="slide-title">Old Siloed Way vs. AI-Native Connected Way</h2>
+      <p class="slide-subtitle">
+        How much time and client revenue we save across common Webnox workflows.
+      </p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Workflow / Operation</th>
+              <th>Traditional Siloed Way</th>
+              <th>AI-Native Connected Way</th>
+              <th>Impact for Webnox</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Technical SEO & Traffic Drop Audit</strong></td>
+              <td class="faint">3 to 4 Days (Manual CSV downloads, spreadsheet formulas, team meetings)</td>
+              <td class="highlight">5 Minutes (GSC API + Logs ingestion in AI agent)</td>
+              <td><span class="badge badge-success">50x Faster</span></td>
+            </tr>
+            <tr>
+              <td><strong>Security Incident & Defacement Triage</strong></td>
+              <td class="faint">1 to 2 Days (Finger-pointing between hosting and developers)</td>
+              <td class="highlight">15 Minutes (Direct server log analysis + DB scan)</td>
+              <td><span class="badge badge-success">Zero SLA Breach</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cross-Team Handoff (SEO -> Dev)</strong></td>
+              <td class="faint">Vague emails, lost requirements, wrong code deployed</td>
+              <td class="highlight">Auto-generated Markdown specs with exact line-level fixes</td>
+              <td><span class="badge badge-info">Zero Rework</span></td>
+            </tr>
+            <tr>
+              <td><strong>Monthly Client Performance Review</strong></td>
+              <td class="faint">4 Hours per client manually compiling screenshots</td>
+              <td class="highlight">10 Minutes (Automated multi-source executive deck)</td>
+              <td><span class="badge badge-amber">100% Client Trust</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 1.8rem; background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-size: 1.05rem; color: var(--text-main);">
+          <strong>Bottom Line for Management:</strong> We don't hire more people to do repetitive grunt work. We give our existing specialists AI-native tooling so they deliver 10x higher quality in 10% of the time.
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: How Every Department Connects -->
+    <div class="slide" id="slide-5">
+      <div class="slide-tag">Cross-Department Architecture</div>
+      <h2 class="slide-title">How Every Team Connects at Webnox</h2>
+      <p class="slide-subtitle">
+        One client brief flows automatically across connected department agents with zero lost context.
+      </p>
+
+      <div class="grid-3">
+        <div class="dept-card" style="border-top-color: #38bdf8;">
+          <div class="dept-header">
+            <span class="dept-name">1. Business / Sales</span>
+            <span class="badge badge-info">Ingestion</span>
+          </div>
+          <p class="dept-desc">Captures client brief & target geography. AI agent generates structured project scope, tech requirements, and deliverables.</p>
+          <div class="dept-connect">Handoff -> SEO & Strategy</div>
+        </div>
+
+        <div class="dept-card" style="border-top-color: #34d399;">
+          <div class="dept-header">
+            <span class="dept-name">2. SEO & SEM Team</span>
+            <span class="badge badge-success">Analysis</span>
+          </div>
+          <p class="dept-desc">Pulls live GSC queries & competitor gaps. AI generates keyword intent clusters, canonical rules, and URL architecture.</p>
+          <div class="dept-connect">Handoff -> Content & Dev</div>
+        </div>
+
+        <div class="dept-card" style="border-top-color: #fbbf24;">
+          <div class="dept-header">
+            <span class="dept-name">3. Content & Social</span>
+            <span class="badge badge-amber">Production</span>
+          </div>
+          <p class="dept-desc">Consumes keyword maps. AI drafts localized copy and social calendars; human writers polish brand voice and client nuance.</p>
+          <div class="dept-connect">Handoff -> WordPress Dev</div>
+        </div>
+
+        <div class="dept-card" style="border-top-color: #c084fc;">
+          <div class="dept-header">
+            <span class="dept-name">4. WordPress & Dev</span>
+            <span class="badge" style="background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3);">Engineering</span>
+          </div>
+          <p class="dept-desc">Builds pages using AI-validated code, automatically injects Schema.org markup, optimizes Core Web Vitals, and adds form debounce.</p>
+          <div class="dept-connect">Handoff -> DevOps Team</div>
+        </div>
+
+        <div class="dept-card" style="border-top-color: #fb7185;">
+          <div class="dept-header">
+            <span class="dept-name">5. DevOps & Infrastructure</span>
+            <span class="badge" style="background: rgba(251, 113, 133, 0.15); color: #fb7185; border: 1px solid rgba(251, 113, 133, 0.3);">Reliability</span>
+          </div>
+          <p class="dept-desc">Monitors server logs, automates database indexing, isolates cron jobs, verifies SSL certificates, and hardens REST APIs against exploits.</p>
+          <div class="dept-connect">Handoff -> Delivery</div>
+        </div>
+
+        <div class="dept-card" style="border-top-color: #2dd4bf;">
+          <div class="dept-header">
+            <span class="dept-name">6. Client Delivery & QA</span>
+            <span class="badge" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.3);">Signoff</span>
+          </div>
+          <p class="dept-desc">Automated QA runs final checks; AI generates client-ready executive summary and live verification links for team lead approval.</p>
+          <div class="dept-connect">Result: 100% Verified Quality</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: The 30-Day Rollout & Call to Action -->
+    <div class="slide" id="slide-6">
+      <div class="slide-tag">Action Plan & Next Steps</div>
+      <h2 class="slide-title">Building the "Webnox Company OS"</h2>
+      <p class="slide-subtitle">
+        How we will roll this out practically over the next 30 days without disrupting active client work.
+      </p>
+
+      <div class="grid-2">
+        <div class="card" style="border-top: 3px solid var(--accent-blue);">
+          <div class="card-title" style="color: var(--accent-blue);">
+            <span>📚</span> Standard Webnox Skills Repo
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Instead of prompting from scratch, we build reusable, version-controlled markdown skills for every team:
+          </p>
+          <ul class="card-list" style="font-size: 0.92rem;">
+            <li><strong>seo-ranking-diagnostic.md:</strong> Automated GSC query drops & cannibalization audit.</li>
+            <li><strong>wordpress-technical-audit.md:</strong> Automated schema, permalink, and debounce validator.</li>
+            <li><strong>content-brief-generator.md:</strong> Converts SEO target clusters into writer-ready outlines.</li>
+            <li><strong>server-log-analyzer.md:</strong> Instant parser for PHP slow logs and malicious bot spikes.</li>
+            <li><strong>client-weekly-reporter.md:</strong> Summarizes weekly traffic wins and work completed.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--accent-green);">
+          <div class="card-title" style="color: var(--accent-green);">
+            <span>🗓️</span> 30-Day Phased Implementation
+          </div>
+          <ul class="card-list" style="font-size: 0.95rem;">
+            <li>
+              <span class="icon">🔹</span>
+              <div><strong>Week 1 (Workflow Mapping):</strong> Each Team Lead lists their top 2 repetitive tasks that cause delays.</div>
+            </li>
+            <li>
+              <span class="icon">🔹</span>
+              <div><strong>Week 2–3 (Pilot Automations):</strong> DevOps & Dev teams assist each department in creating their first automated skill.</div>
+            </li>
+            <li>
+              <span class="icon">🔹</span>
+              <div><strong>Week 4 (Review & Scorecard):</strong> Present hours saved, error reductions, and turnaround speed to the MD.</div>
+            </li>
+            <li>
+              <span class="icon">🔒</span>
+              <div><strong>Security & Governance:</strong> Zero client data leaks. Strict human review before any code or content goes live.</div>
+            </li>
+          </ul>
+
+          <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 8px;">
+            <div style="font-size: 0.95rem; font-style: italic; color: var(--accent-amber); text-align: center;">
+              "If Webnox were founded today, would we build our workflows the way we do now? Let's build the future together."
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Speaker Notes Overlay Modal -->
+  <div id="speaker-modal">
+    <div class="modal-header">
+      <span class="modal-title">🎙️ Speaker Notes</span>
+      <button onclick="toggleSpeakerNotes()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;">✕</button>
+    </div>
+    <div class="modal-body" id="modalText">
+      Loading speaker notes...
+    </div>
+  </div>
+
+  <footer>
+    <div class="nav-hints">
+      <div><span class="key-badge">←</span> <span class="key-badge">→</span> Navigate Slides</div>
+      <div><span class="key-badge">Space</span> Next Slide</div>
+      <div><span class="key-badge">N</span> Toggle Speaker Notes</div>
+      <div><span class="key-badge">F</span> Fullscreen</div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn" onclick="toggleSpeakerNotes()">🎙️ Notes</button>
+      <button class="btn" onclick="prevSlide()">‹ Prev</button>
+      <button class="btn btn-primary" onclick="nextSlide()">Next ›</button>
+    </div>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    const speakerNotes = [
+      "SLIDE 1 (0:00 - 1:30): Good morning MD sir, team leads, and colleagues. Today's KT is about our transition from being AI-assisted to AI-native. AI-native doesn't mean opening ChatGPT to ask questions. It means connecting our real data—Google Search Console, server logs, code repos, and databases—directly to AI agents so our teams stop doing mechanical busywork.",
+      "SLIDE 2 (1:30 - 3:00): Now, some of you might be thinking: 'Wait, our developers are already using Antigravity to write code every day! Aren't we already AI-native?' The answer is: writing code is only 20% of the puzzle. The remaining 80% is where our projects get stuck! Antigravity sitting on a developer's laptop has zero visibility into Google Search Console rankings dropping 65%. It doesn't see Cloudways server slow logs or database locks. And our SEO, Content, and Sales teams are completely cut off from it. Moving to AI-native means Antigravity connects directly to live telemetry (GSC + Server Logs) and connects all departments together into one automated pipeline.",
+      "SLIDE 3 (3:00 - 5:30): Here is the real proof from our live tests on Ezy Cash For Cars. When we connected the GSC API and Cloudways server logs to our AI coding agent, in 5 minutes it found 4 critical things: 1) Four core money pages had noindex tags causing a 65% drop; 2) The homepage was cannibalizing city queries; 3) The database slow log showed background jobs running during user visits; and 4) Mobile users were clicking submit 6 times because the button lacked a debounce script. 5 minutes replaced 4 days of manual debugging!",
+      "SLIDE 4 (5:30 - 7:00): Look at the business numbers. A technical SEO audit goes from 4 days to 5 minutes. Security incident triage goes from 2 days of panic to 15 minutes. Cross-team handoffs are clean Markdown specs with zero misunderstandings. We don't need to work overtime on mechanical tasks; we can take on 3x more clients with the exact same team.",
+      "SLIDE 5 (7:00 - 8:30): Notice that every single department has a clear role here. Sales enters client goals -> SEO gets keyword intent -> Content writers produce copy -> Dev deploys validated code -> DevOps monitors performance -> Client delivery presents the final wins. Nobody is replaced. Every team member becomes 5x more impactful.",
+      "SLIDE 6 (8:30 - 10:00): Our plan for the next 30 days: We are building the Webnox Company OS with standardized, reusable AI skills in Git. In Week 1, each team lead will identify 1 repetitive task to automate. By Week 4, we measure our time saved and client impact. Thank you MD sir and team leads—let's open the floor for your thoughts."
+    ];
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      currentSlide = index;
+
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === currentSlide);
+      });
+
+      document.getElementById('slideCounter').textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+      document.getElementById('progressBar').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+      document.getElementById('modalText').textContent = speakerNotes[currentSlide];
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleSpeakerNotes() {
+      const modal = document.getElementById('speaker-modal');
+      modal.classList.toggle('open');
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleSpeakerNotes();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+
+    // Initialize
+    updateSlide(0);
+  </script>
+</body>
+</html>
