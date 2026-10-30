@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Empowering Every Team with AI | Webnox Technologies KT</title>
+  <title>Level Up with AI: Connecting Real-Time Data | Webnox Technologies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: #131b2e;
-      --card-border: #1e293b;
+      --bg: #070a13;
+      --card-bg: rgba(18, 25, 43, 0.75);
+      --card-hover: rgba(26, 36, 62, 0.85);
+      --card-border: rgba(56, 189, 248, 0.15);
+      --border-light: rgba(255, 255, 255, 0.08);
       --accent-blue: #38bdf8;
-      --accent-green: #34d399;
-      --accent-amber: #fbbf24;
-      --accent-rose: #fb7185;
-      --accent-purple: #c084fc;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-emerald: #34d399;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
       --text-sub: #cbd5e1;
+      --text-muted: #94a3b8;
     }
 
     * {
@@ -30,9 +34,15 @@
 
     body {
       background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 60%);
       color: var(--text-main);
-      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
+      height: 100vh;
+      height: 100dvh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -51,83 +61,85 @@
     }
     .progress-bar {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+      background: linear-gradient(90deg, #38bdf8, #10b981, #a855f7);
       width: 16.66%;
-      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Header Nav */
     header {
-      padding: 0.9rem 2.5rem;
+      padding: 1rem 2.8rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(11, 15, 25, 0.9);
-      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      background: rgba(7, 10, 19, 0.85);
+      backdrop-filter: blur(14px);
       z-index: 50;
     }
 
-    .brand {
+    .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
-    .brand-badge {
-      background: linear-gradient(135deg, #2563eb, #0284c7);
+    .brand-pill {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
       color: white;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       padding: 4px 10px;
       border-radius: 6px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+      box-shadow: 0 0 15px rgba(2, 132, 199, 0.35);
     }
-    .brand-title {
-      font-size: 1.05rem;
+    .brand-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--text-muted);
     }
-    .brand-title span {
+    .brand-text span {
       color: var(--text-main);
       font-weight: 700;
     }
 
-    .header-controls {
+    .nav-controls {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 14px;
     }
 
-    .script-toggle-btn {
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 6px;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--accent-blue);
-      cursor: pointer;
+    .dots-indicator {
       display: flex;
-      align-items: center;
       gap: 6px;
-      transition: all 0.2s;
     }
-    .script-toggle-btn:hover, .script-toggle-btn.active {
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .dot.active {
+      width: 24px;
+      border-radius: 12px;
       background: var(--accent-blue);
-      color: #0b0f19;
+      box-shadow: 0 0 10px var(--accent-blue);
     }
 
-    .slide-counter {
+    .slide-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--accent-blue);
       background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      padding: 4px 12px;
-      border-radius: 20px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 3px 12px;
+      border-radius: 16px;
     }
 
-    /* Main Slides Viewport */
+    /* Main Slide Container */
     main {
       flex: 1;
       position: relative;
@@ -135,21 +147,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.2rem 2.5rem;
+      padding: 1.5rem 3rem;
     }
 
     .slide {
       position: absolute;
       inset: 0;
-      padding: 2rem 4rem 1.5rem 4rem;
+      padding: 2.2rem 4rem 1.5rem 4rem;
       opacity: 0;
       visibility: hidden;
-      transform: translateX(40px) scale(0.98);
+      transform: translateX(35px) scale(0.985);
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      max-width: 1380px;
+      max-width: 1420px;
       margin: 0 auto;
       overflow-y: auto;
     }
@@ -160,276 +172,285 @@
       transform: translateX(0) scale(1);
     }
 
-    /* Typography & Titles */
-    .slide-tag {
+    /* Headings & Texts */
+    .slide-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent-blue);
       margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
-    .slide-tag::before {
+    .slide-category::before {
       content: '';
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--accent-blue);
-      box-shadow: 0 0 10px var(--accent-blue);
+      box-shadow: 0 0 8px var(--accent-blue);
     }
 
-    .slide-title {
-      font-size: 2.3rem;
+    .slide-heading {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
       font-weight: 800;
       line-height: 1.18;
-      margin-bottom: 0.4rem;
-      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #ffffff 45%, #94a3b8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .slide-subtitle {
-      font-size: 1.1rem;
+    .slide-lead {
+      font-size: 1.12rem;
       color: var(--text-muted);
-      margin-bottom: 1.4rem;
-      max-width: 1050px;
-      line-height: 1.45;
-    }
-
-    /* Embedded "What to Say" Presenter Drawer */
-    .presenter-box {
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-left: 4px solid var(--accent-blue);
-      border-radius: 10px;
-      padding: 0.9rem 1.25rem;
-      margin-bottom: 1.2rem;
-      display: none;
-      animation: fadeIn 0.25s ease;
-    }
-    .presenter-box.show {
-      display: block;
-    }
-    .presenter-header {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent-blue);
-      margin-bottom: 0.35rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .presenter-text {
-      font-size: 0.95rem;
+      margin-bottom: 1.6rem;
+      max-width: 1100px;
       line-height: 1.5;
-      color: #e2e8f0;
     }
-    .presenter-text strong {
-      color: var(--accent-green);
-    }
-
-    /* Cards & Grids */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.4rem;
-      align-items: stretch;
+    .slide-lead strong {
+      color: var(--text-main);
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-
+    /* Cards & Containers */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
       padding: 1.4rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
       position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease;
     }
     .card:hover {
+      background: var(--card-hover);
       border-color: rgba(56, 189, 248, 0.4);
       transform: translateY(-2px);
     }
 
-    .card-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
     }
-
-    .card-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
     }
-    .card-list li {
-      font-size: 0.95rem;
-      line-height: 1.45;
-      color: var(--text-sub);
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .card-list li span.icon {
-      flex-shrink: 0;
-      margin-top: 2px;
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
     }
 
     /* Badges */
-    .badge {
+    .tag {
       display: inline-block;
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 5px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 5px;
     }
-    .badge-success { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
-    .badge-info { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .badge-amber { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
-    .badge-purple { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+    .tag-blue { background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tag-green { background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-amber { background: rgba(245, 158, 11, 0.12); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .tag-rose { background: rgba(244, 63, 94, 0.12); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
+    .tag-purple { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
 
-    /* Interactive Data Console */
-    .data-tabs {
+    /* Interactive Live Data Showcase on Slide 2 */
+    .showcase-container {
+      background: rgba(11, 17, 32, 0.9);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 1.3rem;
       display: flex;
-      gap: 8px;
-      margin-bottom: 0.75rem;
+      flex-direction: column;
+      gap: 1.2rem;
     }
-    .data-tab-btn {
-      background: rgba(30, 41, 59, 0.7);
-      border: 1px solid var(--card-border);
+
+    .data-switch-nav {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.8rem;
+    }
+    .switch-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
       color: var(--text-muted);
-      padding: 0.45rem 1rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       transition: all 0.2s;
     }
-    .data-tab-btn.active {
-      background: rgba(56, 189, 248, 0.15);
+    .switch-btn:hover {
+      background: rgba(56, 189, 248, 0.08);
+      color: var(--text-main);
+    }
+    .switch-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(2, 132, 199, 0.2));
       border-color: var(--accent-blue);
       color: var(--accent-blue);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
     }
 
-    .data-panel {
+    .data-view {
       display: none;
-      background: #060913;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeIn 0.3s ease;
+    }
+    .data-view.active {
+      display: block;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .metric-box {
+      background: rgba(18, 26, 44, 0.8);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .metric-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .metric-sub {
+      font-size: 0.8rem;
+      color: var(--accent-amber);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .terminal-box {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       padding: 1.1rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      line-height: 1.45;
+      font-size: 0.85rem;
+      line-height: 1.5;
       color: #94a3b8;
-      max-height: 290px;
-      overflow-y: auto;
     }
-    .data-panel.active {
-      display: block;
-    }
-    .data-panel .highlight {
-      color: #38bdf8;
-      font-weight: 600;
-    }
-    .data-panel .alert {
-      color: #fb7185;
-      font-weight: 600;
-    }
-    .data-panel .success {
-      color: #34d399;
-      font-weight: 600;
-    }
+    .t-blue { color: #38bdf8; font-weight: 600; }
+    .t-green { color: #34d399; font-weight: 600; }
+    .t-red { color: #f43f5e; font-weight: 600; }
+    .t-amber { color: #fbbf24; font-weight: 600; }
 
-    /* Department Cards */
-    .dept-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.1rem;
-    }
-    .dept-action-card {
+    /* Department Showcase Cards (Slide 4 & 5) */
+    .dept-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1.15rem;
-      border-top: 3px solid var(--accent-blue);
+      border-radius: 14px;
+      padding: 1.4rem;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.9rem;
+      transition: all 0.25s;
     }
-    .dept-title-row {
+    .dept-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.4);
+      background: var(--card-hover);
+    }
+    .dept-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .dept-title {
+    .dept-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
       font-weight: 700;
-      font-size: 1.05rem;
       color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .dept-highlight {
+    .dept-status {
       font-size: 0.85rem;
       color: var(--accent-green);
       font-weight: 600;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
     }
-    .dept-details {
-      font-size: 0.88rem;
+
+    .workflow-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 0.85rem;
+      font-size: 0.9rem;
+      line-height: 1.45;
       color: var(--text-sub);
-      line-height: 1.42;
     }
-    .dept-benefit {
-      font-size: 0.78rem;
-      font-family: 'JetBrains Mono', monospace;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 5px 8px;
-      border-radius: 5px;
+    .workflow-box strong {
       color: var(--accent-blue);
-      margin-top: auto;
+    }
+
+    .output-preview {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      background: #030712;
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      color: #38bdf8;
+      border-left: 3px solid var(--accent-cyan);
     }
 
     /* Footer Controls */
     footer {
-      padding: 0.9rem 2.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(11, 15, 25, 0.9);
-      backdrop-filter: blur(12px);
+      padding: 1rem 2.8rem;
+      border-top: 1px solid var(--border-light);
+      background: rgba(7, 10, 19, 0.85);
+      backdrop-filter: blur(14px);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 50;
     }
 
-    .nav-hints {
+    .key-hints {
       display: flex;
       gap: 1.2rem;
       font-size: 0.82rem;
       color: var(--text-muted);
     }
-    .key-badge {
-      display: inline-block;
+    .kbd {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 4px;
-      padding: 2px 6px;
+      padding: 2px 7px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.78rem;
       color: var(--text-main);
@@ -440,13 +461,13 @@
       display: flex;
       gap: 10px;
     }
-    .btn {
+    .nav-btn {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 0.55rem 1.15rem;
+      padding: 0.55rem 1.25rem;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -454,24 +475,194 @@
       gap: 6px;
       transition: all 0.2s ease;
     }
-    .btn:hover {
+    .nav-btn:hover {
       background: #1e293b;
       border-color: var(--accent-blue);
       color: var(--accent-blue);
     }
-    .btn-primary {
+    .nav-btn-primary {
       background: linear-gradient(135deg, #0284c7, #2563eb);
       border: none;
       color: white;
     }
-    .btn-primary:hover {
+    .nav-btn-primary:hover {
       box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
       color: white;
     }
 
+    /* Focus Banner */
+    .focus-banner {
+      margin-top: 1.8rem;
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: rgba(56, 189, 248, 0.06);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 10px;
+    }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========================================================
+       RESPONSIVE DESIGN (Tablets & Mobile Screens)
+       ======================================================== */
+    @media (max-width: 1024px) {
+      header {
+        padding: 0.85rem 1.5rem;
+      }
+      main {
+        padding: 1rem 1.5rem;
+      }
+      .slide {
+        padding: 1.5rem 2rem;
+      }
+      .slide-heading {
+        font-size: 2rem;
+      }
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .grid-4 {
+        grid-template-columns: 1fr 1fr;
+      }
+      footer {
+        padding: 0.85rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 0.6rem 0.85rem;
+        gap: 8px;
+      }
+      .brand-wrap {
+        gap: 6px;
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+      }
+      .brand-pill {
+        font-size: 0.72rem;
+        padding: 2px 7px;
+        border-radius: 5px;
+        letter-spacing: 0.05em;
+        flex-shrink: 0;
+      }
+      .brand-text {
+        font-size: 0.82rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+      .brand-text span {
+        display: none !important;
+      }
+      .dots-indicator {
+        display: none !important;
+      }
+      .slide-badge {
+        font-size: 0.74rem;
+        padding: 2px 8px;
+        border-radius: 12px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      main {
+        padding: 0.4rem;
+      }
+      .slide {
+        padding: 0.85rem 0.85rem 6.5rem 0.85rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .slide-category {
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+      }
+      .slide-heading {
+        font-size: 1.35rem;
+        line-height: 1.25;
+        margin-bottom: 0.4rem;
+      }
+      .slide-lead {
+        font-size: 0.86rem;
+        line-height: 1.45;
+        margin-bottom: 0.9rem;
+      }
+      .grid-2, .grid-3, .grid-4 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .card, .dept-card {
+        padding: 0.95rem;
+        border-radius: 12px;
+      }
+      .showcase-container {
+        padding: 0.85rem;
+        gap: 0.85rem;
+      }
+      .data-switch-nav {
+        flex-direction: column;
+        gap: 6px;
+        padding-bottom: 0.5rem;
+      }
+      .switch-btn {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.82rem;
+      }
+      .metrics-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-bottom: 0.8rem;
+      }
+      .metric-box {
+        padding: 0.65rem;
+      }
+      .metric-num {
+        font-size: 1.35rem;
+      }
+      .metric-label {
+        font-size: 0.68rem;
+      }
+      .metric-sub {
+        font-size: 0.72rem;
+      }
+      .terminal-box {
+        font-size: 0.72rem;
+        padding: 0.75rem;
+        line-height: 1.4;
+        word-break: break-word;
+      }
+      .focus-banner {
+        margin-top: 1rem;
+        padding: 0.75rem 0.9rem;
+        font-size: 0.84rem;
+        gap: 8px;
+      }
+      footer {
+        padding: 0.6rem 0.85rem;
+        justify-content: center;
+      }
+      .key-hints {
+        display: none !important;
+      }
+      .btn-group {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+      }
+      .nav-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 0.7rem 0.6rem;
+        font-size: 0.88rem;
+      }
     }
   </style>
 </head>
@@ -482,399 +673,461 @@
   </div>
 
   <header>
-    <div class="brand">
-      <div class="brand-badge">WEBNOX</div>
-      <div class="brand-title">Connecting Live Data | <span>Empowering Every Team</span></div>
+    <div class="brand-wrap">
+      <div class="brand-pill">WEBNOX</div>
+      <div class="brand-text">Level Up with AI: <span>Connecting Real-Time Data</span></div>
     </div>
-    <div class="header-controls">
-      <button class="script-toggle-btn active" id="scriptToggleBtn" onclick="toggleAllPresenterBoxes()">
-        🎙️ What To Talk (Speaker Script)
-      </button>
-      <div class="slide-counter" id="slideCounter">Slide 1 / 6</div>
+    <div class="nav-controls">
+      <div class="dots-indicator" id="dotsContainer"></div>
+      <div class="slide-badge" id="slideBadge">Slide 1 / 6</div>
     </div>
   </header>
 
   <main>
-    <!-- SLIDE 1: Vision & Motivation -->
+    <!-- SLIDE 1: Vision & The Real Transition -->
     <div class="slide active" id="slide-1">
-      <div class="slide-tag">Webnox All-Hands KT | Managing Director Directive</div>
-      <h1 class="slide-title">Empowering Every Department with Connected AI</h1>
-      <p class="slide-subtitle">
-        Our Development Team is already working fully with AI. Now it’s time to empower <strong>SEO, Content, Social Media, DevOps, and Sales</strong> with the exact same superpower.
+      <div class="slide-category">All-Hands KT | Modernizing Agency Workflows</div>
+      <h1 class="slide-heading">Level Up with AI: From Isolated Tasks to Connected Data</h1>
+      <p class="slide-lead">
+        Every team at Webnox is already using AI. SEO writes content & designs high-ranking pages, Social Media scripts Reels, UI/UX generates visual assets, and Devs code with AI. 
+        <strong>The real breakthrough is how we connect live data (Search Console + Server Telemetry) to make our AI 10x more effective.</strong>
       </p>
-
-      <!-- Embedded What To Talk -->
-      <div class="presenter-box show">
-        <div class="presenter-header">🎙️ What You Say To The Room (Slide 1):</div>
-        <div class="presenter-text">
-          "Good morning MD sir, team leads, and colleagues. Yesterday our MD set a big goal: to transition Webnox fully into AI across all departments. I know many of you are wondering: <em>'What does this mean for my team? How will this help my everyday work?'</em> Our development team is already working fully with AI every single day. Today, I'm here to show you that <strong>AI isn't just for developers</strong>. When we connect real-time data—like Search Console and our servers—AI removes the tedious, repetitive work from your desk so you can focus on creative strategy, client impact, and growing your career."
-        </div>
-      </div>
 
       <div class="grid-3" style="margin-top: 0.5rem;">
         <div class="card" style="border-top: 3px solid var(--accent-blue);">
-          <div class="card-title" style="color: var(--accent-blue);">
-            <span>🚀</span> Dev Is Already Fully AI
+          <div style="font-size: 1.15rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+            <span>🤖</span> Where We Are Today
           </div>
-          <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.45;">
-            Our developers code with AI daily. They write features faster and cleaner. But coding is only one piece of the agency puzzle.
+          <p style="color: var(--text-sub); font-size: 0.95rem; line-height: 1.5;">
+            Everyone uses AI in isolated tabs. We prompt ChatGPT, Midjourney, and code assistants with our own ideas, but without knowing live production facts.
           </p>
         </div>
 
         <div class="card" style="border-top: 3px solid var(--accent-green);">
-          <div class="card-title" style="color: var(--accent-green);">
-            <span>⚡</span> The Real Superpower
+          <div style="font-size: 1.15rem; font-weight: 700; color: var(--accent-green); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+            <span>🔗</span> The Next Level (Connected Data)
           </div>
-          <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.45;">
-            The real breakthrough happens when we <strong>connect live production data</strong> (Search Console + Server Logs). We eliminate guesswork completely.
+          <p style="color: var(--text-sub); font-size: 0.95rem; line-height: 1.5;">
+            Feeding <strong>live search queries, real visitor impressions, and server logs</strong> directly into our AI tools. AI stops guessing and acts on ground truth.
           </p>
         </div>
 
         <div class="card" style="border-top: 3px solid var(--accent-amber);">
-          <div class="card-title" style="color: var(--accent-amber);">
-            <span>🎯</span> Elevating Every Department
+          <div style="font-size: 1.15rem; font-weight: 700; color: var(--accent-amber); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+            <span>🚀</span> The Impact For Everyone
           </div>
-          <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.45;">
-            SEO, Content Writers, Social Media, DevOps, and Sales—everyone gets practical AI workflows that remove boring grunt work forever.
+          <p style="color: var(--text-sub); font-size: 0.95rem; line-height: 1.5;">
+            Better page conversions for SEO & Dev, viral high-intent Reels for Social Media, rock-solid server performance for DevOps, and high-ticket pitches for Sales.
           </p>
         </div>
       </div>
 
-      <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 15px;">
-        <div style="font-weight: 700; color: var(--accent-green); font-size: 1rem;">Presented by: Karan Singh</div>
-        <div style="color: var(--text-muted); font-size: 0.88rem;">| DevOps & Systems Development Lead</div>
+      <div class="focus-banner">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 1.3rem;">💡</span>
+          <div style="font-size: 0.95rem; color: var(--text-main);">
+            <strong>Today's Focus:</strong> We aren't here to tell you to use AI—you already do! We're here to show how <strong>connecting real-time data</strong> removes your guesswork and makes your work unstoppable.
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SLIDE 2: Real-Time Data Proof -->
+    <!-- SLIDE 2: Interactive Real-Time Data from EzyCashForCars -->
     <div class="slide" id="slide-2">
-      <div class="slide-tag">Real-World Evidence | Live Production Connection</div>
-      <h2 class="slide-title">Proof: What Real-Time Data Looks Like</h2>
-      <p class="slide-subtitle">
-        Here is the actual data generated when we connect Google Search Console and Cloudways server logs into an AI agent. Zero speculation.
+      <div class="slide-category">Live Proof | Real-Time Telemetry Breakdown</div>
+      <h2 class="slide-heading">Case Study: What Connecting Live Data Actually Reveals</h2>
+      <p class="slide-lead">
+        We connected live Google Search Console telemetry and Cloudways production server logs on <strong>ezycashforcars.com.au</strong>. Click the tabs below to explore what the data uncovered:
       </p>
 
-      <!-- Embedded What To Talk -->
-      <div class="presenter-box show">
-        <div class="presenter-header">🎙️ What You Say To The Room (Slide 2):</div>
-        <div class="presenter-text">
-          "This is not theory or marketing hype. On our client site <strong>ezycashforcars.com.au</strong>, we connected the live Google Search Console API and the Cloudways production server directly to our AI agent. Look at what happened: Instead of an SEO analyst spending 3 days in Excel comparing CSVs, the connected AI instantly pulled the <strong>exact 4 core URLs that had Yoast noindex flags</strong> causing a 64.9% traffic collapse. Then it read the server slow log and found <strong>ActionScheduler queue runners freezing worker threads for 5 seconds</strong> during user visits. And it caught mobile users <strong>tapping submit 6 times</strong> because of missing debounce. When live systems are connected, facts are instantaneous."
+      <div class="showcase-container">
+        <div class="data-switch-nav">
+          <button class="switch-btn active" onclick="showDataView(0)">
+            <span>📊</span> Search Console: Query Cannibalization
+          </button>
+          <button class="switch-btn" onclick="showDataView(1)">
+            <span>🚨</span> The Silent Traffic Killer: Yoast Noindex
+          </button>
+          <button class="switch-btn" onclick="showDataView(2)">
+            <span>⚡</span> Server Logs: 5.2s ActionScheduler Lag
+          </button>
         </div>
-      </div>
 
-      <div class="data-tabs">
-        <button class="data-tab-btn active" onclick="switchDataTab(0)">📊 1. GSC Search Telemetry</button>
-        <button class="data-tab-btn" onclick="switchDataTab(1)">⚙️ 2. Server Slow Query Log</button>
-        <button class="data-tab-btn" onclick="switchDataTab(2)">🔒 3. Database & Abuse Triage</button>
-      </div>
+        <!-- View 1: GSC Cannibalization -->
+        <div class="data-view active" id="view-0">
+          <div class="metrics-row">
+            <div class="metric-box">
+              <span class="metric-label">High-Intent Impressions</span>
+              <span class="metric-num" style="color: var(--accent-blue);">86,634</span>
+              <span class="metric-sub" style="color: var(--text-muted);">Query: "cash for cars brisbane"</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Captured Clicks</span>
+              <span class="metric-num" style="color: var(--text-main);">617</span>
+              <span class="metric-sub" style="color: var(--accent-amber);">Massive Traffic Leak</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Actual CTR</span>
+              <span class="metric-num" style="color: var(--accent-rose);">0.71%</span>
+              <span class="metric-sub" style="color: var(--accent-rose);">Expected 4.5% - 8.0%</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Average Ranking</span>
+              <span class="metric-num" style="color: var(--accent-green);">4.2</span>
+              <span class="metric-sub" style="color: var(--accent-green);">First Page Position</span>
+            </div>
+          </div>
 
-      <!-- Tab 1: GSC -->
-      <div class="data-panel active" id="tab-0">
-<span class="highlight">// Live Google Search Console API Telemetry Query (ezycashforcars.com.au)</span>
-{
-  <span class="highlight">"query"</span>: "cash for cars brisbane",
-  <span class="highlight">"impressions"</span>: 86634,
-  <span class="highlight">"clicks"</span>: 617,
-  <span class="alert">"ctr"</span>: "0.71%",             <span class="alert">// CANNIBALIZATION TRAP: Homepage ranking instead of landing page</span>
-  <span class="highlight">"position"</span>: 4.2,
-  <span class="alert">"de_indexed_urls"</span>: [
-    { <span class="highlight">"url"</span>: "https://ezycashforcars.com.au/cash-for-cars-brisbane/", <span class="alert">"yoast_meta"</span>: "_yoast_wpseo_meta-robots-noindex = 1" },
-    { <span class="highlight">"url"</span>: "https://ezycashforcars.com.au/scrap-car-removal-sydney/", <span class="alert">"yoast_meta"</span>: "_yoast_wpseo_meta-robots-noindex = 1" }
-  ],
-  <span class="success">"traffic_drop_detected"</span>: "-64.9% organic clicks over 7-day period"
-}
-      </div>
+          <div class="terminal-box">
+            <span class="t-blue">🔍 REAL-TIME DISCOVERY:</span> Google is ranking the <span class="t-amber">Generic Homepage (/)</span> instead of the dedicated landing page <span class="t-green">(/cash-for-cars-brisbane/)</span>.<br>
+            <span class="t-red">WHY IT MATTERS:</span> Visitors searching for Brisbane scrap quotes land on a generic homepage, get confused, and bounce. Over 80,000 potential local leads were lost.<br>
+            <span class="t-green">DATA-INFORMED FIX:</span> SEO & WordPress Devs restructure inner links and canonical hierarchy to direct all Brisbane authority to the dedicated landing page.
+          </div>
+        </div>
 
-      <!-- Tab 2: Server Slow Log -->
-      <div class="data-panel" id="tab-1">
-<span class="highlight"># Cloudways PHP-FPM Slow Log: /home/master/applications/xyz/logs/php-app.slow.log</span>
-[26-Oct-2026 14:22:08]  [pool xyz] pid 19842
-<span class="alert">script_filename = /home/master/applications/xyz/public_html/index.php</span>
-[0x00007f3b89] <span class="alert">mysqli_query()</span> /public_html/wp-includes/class-wpdb.php:2344
-[0x00007f3b90] <span class="highlight">ActionScheduler_DBStore->query_actions()</span>:5.242s
-<span class="alert">ROOT CAUSE FOUND: Heavy background cron jobs were executing during live customer visits!</span>
-<span class="success">AI ACTION: Offloaded ActionScheduler to system crontab in 2 lines. Site latency restored to 280ms.</span>
-      </div>
+        <!-- View 2: Yoast Noindex -->
+        <div class="data-view" id="view-1">
+          <div class="metrics-row">
+            <div class="metric-box">
+              <span class="metric-label">Traffic Impact</span>
+              <span class="metric-num" style="color: var(--accent-rose);">-64.9%</span>
+              <span class="metric-sub" style="color: var(--accent-rose);">Organic collapse in 7 days</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Affected Money Pages</span>
+              <span class="metric-num" style="color: var(--accent-amber);">4 URLs</span>
+              <span class="metric-sub" style="color: var(--text-muted);">Brisbane, Sydney Scrap, etc.</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Yoast Database Flag</span>
+              <span class="metric-num" style="color: var(--accent-blue);">noindex=1</span>
+              <span class="metric-sub" style="color: var(--accent-blue);">In wp_postmeta table</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Root Cause Discovery</span>
+              <span class="metric-num" style="color: var(--accent-green);">Instant</span>
+              <span class="metric-sub" style="color: var(--accent-green);">Zero guesswork</span>
+            </div>
+          </div>
 
-      <!-- Tab 3: Security & DB -->
-      <div class="data-panel" id="tab-2">
-<span class="highlight"># Netcraft / Abusix Incident Triage (wreckersnewcastle.com.au/kz.htm)</span>
-Target: "Phishing abuse complaint on /kz.htm"
-<span class="highlight">Direct DB Inspection via AI:</span>
-SELECT ID, post_title, post_name, post_status, post_type, post_author FROM wp_posts WHERE post_name = 'kz';
-<span class="alert">Result: Found Post ID 8022 | Title: 'Kamikaze' | Author: ID 15 | Type: 'post'</span>
-<span class="success">DIAGNOSIS: /kz.htm was NOT a file on disk! It was a malicious WordPress post injected via REST API.</span>
-<span class="success">FIX: Deleted post 8022, locked down REST API endpoints for non-admins. Zero client downtime.</span>
+          <div class="terminal-box">
+            <span class="t-blue">🚨 GSC URL INSPECTION TELEMETRY:</span><br>
+            URL: <span class="t-amber">https://ezycashforcars.com.au/cash-for-cars-brisbane/</span> ➔ <span class="t-red">Excluded by 'noindex' tag</span><br>
+            Database verification: <span class="t-blue">SELECT * FROM wp_postmeta WHERE meta_key = '_yoast_wpseo_meta-robots-noindex'</span><br>
+            <span class="t-green">THE VALUE:</span> Without connecting GSC + DB, the SEO team would wait 2 weeks blaming Google core algorithm updates. With live telemetry, the exact rogue setting was corrected immediately.
+          </div>
+        </div>
+
+        <!-- View 3: Server Slow Log -->
+        <div class="data-view" id="view-2">
+          <div class="metrics-row">
+            <div class="metric-box">
+              <span class="metric-label">Peak Server Latency</span>
+              <span class="metric-num" style="color: var(--accent-rose);">5.24s</span>
+              <span class="metric-sub" style="color: var(--accent-rose);">PHP worker thread lock</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Bottleneck Process</span>
+              <span class="metric-num" style="color: var(--accent-amber);">Queue</span>
+              <span class="metric-sub" style="color: var(--text-muted);">ActionScheduler runner</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Mobile Submit Form</span>
+              <span class="metric-num" style="color: var(--accent-blue);">6 Taps</span>
+              <span class="metric-sub" style="color: var(--accent-amber);">Lack of JS button debounce</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Optimized Response</span>
+              <span class="metric-num" style="color: var(--accent-green);">280ms</span>
+              <span class="metric-sub" style="color: var(--accent-green);">Fast mobile experience</span>
+            </div>
+          </div>
+
+          <div class="terminal-box">
+            <span class="t-blue">⚙️ CLOUDWAYS PHP SLOW LOG: /home/master/applications/xyz/logs/php-app.slow.log</span><br>
+            [26-Oct-2026] <span class="t-red">ActionScheduler_DBStore->query_actions() took 5.242s</span> during live user visits.<br>
+            <span class="t-amber">ACCESS LOG TELEMETRY:</span> Mobile users on 4G tapping "Get Fast Quote" 6 times in 10 seconds because the form had no button debounce, flooding sales inboxes with duplicate leads.<br>
+            <span class="t-green">FIXED:</span> Offloaded ActionScheduler to Linux system crontab and added 3 lines of JavaScript debounce to the form button.
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SLIDE 3: Dev is Already AI — Why Others Should Connect -->
+    <!-- SLIDE 3: The Power of Context: AI with Real-Time Data -->
     <div class="slide" id="slide-3">
-      <div class="slide-tag">Bridging The Gap | Why We Must Connect Everyone</div>
-      <h2 class="slide-title">Our Devs Work in AI. Why Is It Time for Everyone Else?</h2>
-      <p class="slide-subtitle">
-        Having only developers use AI is like having a Formula 1 engine in a car with flat tires. When the whole company connects, the whole company moves fast.
+      <div class="slide-category">The Power of Context | Elevating Team Impact</div>
+      <h2 class="slide-heading">How Real-Time Data Levels Up Our Existing Work</h2>
+      <p class="slide-lead">
+        Our teams are already skilled at prompting AI. The next level is giving our AI tools real-time client data so our work achieves maximum impact with less manual effort.
       </p>
-
-      <!-- Embedded What To Talk -->
-      <div class="presenter-box show">
-        <div class="presenter-header">🎙️ What You Say To The Room (Slide 3):</div>
-        <div class="presenter-text">
-          "Right now, our developers use AI inside their code editor to build pages and write code fast. <strong>That's fantastic.</strong> But what happens before and after code is written? The SEO team is still manually copying numbers from Search Console into spreadsheets. Content writers are manually generating outlines. The social media team is creating posts one-by-one from scratch. DevOps is manually sifting through thousands of log lines. If only our developers use AI, our client projects still get delayed waiting for research, content, and handoffs. <strong>When every team uses AI, the entire agency accelerates together.</strong>"
-        </div>
-      </div>
 
       <div class="grid-2">
-        <div class="card" style="border-left: 4px solid var(--accent-rose); background: rgba(239, 68, 68, 0.03);">
-          <div class="card-title" style="color: #f87171;">
-            <span>⚠️</span> The Current Bottleneck (Only Dev Uses AI)
+        <div class="card" style="border-left: 4px solid var(--accent-blue); background: rgba(56, 189, 248, 0.03);">
+          <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+            <span>💡 Level 1: General AI (Our Current Baseline)</span>
+            <span class="tag tag-blue">Good Foundation</span>
           </div>
-          <ul class="card-list">
-            <li>
-              <span class="icon">❌</span>
-              <div><strong>SEO Team:</strong> Spends hours downloading CSVs and running manual VLOOKUP formulas to find keyword drops.</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; color: var(--text-sub); font-size: 0.95rem;">
+            <li style="display: flex; gap: 10px;">
+              <span>•</span>
+              <div><strong>SEO & Content:</strong> AI helps brainstorm broad topics, draft article outlines, and expand vocabulary quickly.</div>
             </li>
-            <li>
-              <span class="icon">❌</span>
-              <div><strong>Content Team:</strong> Stares at a blank page waiting for target keywords and writing outlines from scratch.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>•</span>
+              <div><strong>Social Media:</strong> AI suggests trending video formats, hook ideas, and creative caption variations.</div>
             </li>
-            <li>
-              <span class="icon">❌</span>
-              <div><strong>Social Media Team:</strong> Manually rewrites the same blog article for 4 different social platforms.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>•</span>
+              <div><strong>Web Development:</strong> AI speeds up boilerplate code, CSS styling, and responsive UI structure.</div>
             </li>
-            <li>
-              <span class="icon">❌</span>
-              <div><strong>Result:</strong> Even if Dev finishes a page quickly, the project waits days for SEO strategy and content approval.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>•</span>
+              <div><strong>The Natural Opportunity:</strong> General AI only knows general web trends—it doesn't yet know what our specific client's prospects are actively searching.</div>
             </li>
           </ul>
         </div>
 
-        <div class="card" style="border-left: 4px solid var(--accent-green); background: rgba(52, 211, 153, 0.03);">
-          <div class="card-title" style="color: var(--accent-green);">
-            <span>🚀</span> The Connected Vision (All Teams Empowered)
+        <div class="card" style="border-left: 4px solid var(--accent-green); background: rgba(16, 185, 129, 0.03);">
+          <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-green); margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+            <span>🚀 Level 2: Data-Informed AI (Our Next Leap)</span>
+            <span class="tag tag-green">Maximum Impact</span>
           </div>
-          <ul class="card-list">
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>SEO Team:</strong> Connects GSC API; AI automatically discovers cannibalization and intent gaps across 1,000 queries.</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; color: var(--text-sub); font-size: 0.95rem;">
+            <li style="display: flex; gap: 10px;">
+              <span>✓</span>
+              <div><strong>SEO & Content:</strong> Feeding <strong>live Search Console queries (impressions & CTR)</strong> into AI tailors pages to the exact phrases local customers search on Google.</div>
             </li>
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>Content Team:</strong> AI drafts high-converting outlines and semantic headings; writers polish brand voice and tone.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>✓</span>
+              <div><strong>Social Media:</strong> Scripting Reels based on <strong>real customer search questions</strong> turns casual viewers into direct phone calls and high-intent inquiries.</div>
             </li>
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>Social Media Team:</strong> 1 approved blog post automatically transforms into 5 LinkedIn hooks, Instagram slides, and video scripts.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>✓</span>
+              <div><strong>Web Development:</strong> Code informed by real device access patterns ensures mobile interactions are debounced and pages load in under 500ms.</div>
             </li>
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>Result:</strong> Seamless cross-team harmony. No team feels overworked with mechanical, repetitive tasks.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>✓</span>
+              <div><strong>The Shared Win:</strong> Every team's existing AI skills become far more precise, impactful, and rewarding without extra manual hours.</div>
             </li>
           </ul>
         </div>
       </div>
+
+      <div class="focus-banner" style="gap: 12px;">
+        <span style="font-size: 1.3rem;">⚡</span>
+        <div style="font-size: 0.95rem; color: var(--text-main);">
+          <strong>Core Principle:</strong> We aren't changing the great work our teams do—we are giving our AI tools better data inputs so our output achieves maximum client results.
+        </div>
+      </div>
     </div>
 
-    <!-- SLIDE 4: What SEO, Content & Social Media Teams Can Do -->
+    <!-- SLIDE 4: Practical Superpowers for SEO, Content & UI/UX -->
     <div class="slide" id="slide-4">
-      <div class="slide-tag">Marketing & Organic Teams | Practical Superpowers</div>
-      <h2 class="slide-title">What SEO, Content & Social Teams Can Do</h2>
-      <p class="slide-subtitle">
-        Concrete ways AI eliminates repetitive busywork and gives creative control back to our marketing professionals.
+      <div class="slide-category">Creative & Organic Strategy | Empowering Marketing</div>
+      <h2 class="slide-heading">How SEO, Content & UI/UX Level Up with Live Data</h2>
+      <p class="slide-lead">
+        You already use AI for writing, page layouts, and image generation. Here is how connecting real search data elevates your daily results:
       </p>
 
-      <!-- Embedded What To Talk -->
-      <div class="presenter-box show">
-        <div class="presenter-header">🎙️ What You Say To The Room (Slide 4):</div>
-        <div class="presenter-text">
-          "To our <strong>SEO team</strong>: Imagine never having to manually cross-reference 5,000 search queries in Excel ever again. An AI connected to GSC can instantly show you which page lost impressions, why Google prefers the wrong URL, and which keywords are ready to jump from page 2 to page 1. To our <strong>Content Writers</strong>: AI doesn't replace your storytelling—it gives you the complete research, outline, and competitor analysis so you can write the best article in half the time. To our <strong>Social Media team</strong>: When a blog is published, AI instantly adapts it into LinkedIn carousels, engaging Instagram captions, and short video reels. You curate and direct; AI does the mechanical reformatting."
-        </div>
-      </div>
-
-      <div class="dept-grid">
-        <div class="dept-action-card" style="border-top-color: #38bdf8;">
-          <div class="dept-title-row">
-            <span class="dept-title">🔍 SEO & SEM Team</span>
-            <span class="badge badge-info">Search</span>
+      <div class="grid-3">
+        <!-- SEO Team -->
+        <div class="dept-card" style="border-top: 3px solid var(--accent-blue);">
+          <div class="dept-header">
+            <div class="dept-name"><span>🔍</span> SEO Team</div>
+            <div class="dept-status">Search Data</div>
           </div>
-          <div class="dept-highlight">Automated Search Intelligence</div>
-          <p class="dept-details">
-            • Automated GSC query clustering (identifies queries ranking on Position 4–10).<br>
-            • Instant cannibalization scanner (finds when homepage steals traffic from landing pages).<br>
-            • Automated Schema markup verification and Core Web Vitals checks.
-          </p>
-          <div class="dept-benefit">Outcome: 100% Data-Driven SEO without manual spreadsheets</div>
+          <div class="workflow-box">
+            <strong>The Superpower:</strong> Instead of manually sifting through 5,000 keyword rows in Excel, feed live GSC query data into AI:
+            <br>• Automatically detect query cannibalization.
+            <br>• Spot keywords ranking on positions 4–10 ready to surge to Page 1.
+            <br>• Generate exact structural briefs for web developers.
+          </div>
+          <div class="output-preview">
+            INPUT: 16 months GSC API query dump<br>
+            AI OUTPUT: "Create dedicated /scrap-cars-gold-coast/ to capture 14,000 lost impressions."
+          </div>
         </div>
 
-        <div class="dept-action-card" style="border-top-color: #34d399;">
-          <div class="dept-title-row">
-            <span class="dept-title">✍️ Content Writing Team</span>
-            <span class="badge badge-success">Creative</span>
+        <!-- Content Team -->
+        <div class="dept-card" style="border-top: 3px solid var(--accent-green);">
+          <div class="dept-header">
+            <div class="dept-name"><span>✍️</span> Content Writers</div>
+            <div class="dept-status">Intent-Driven</div>
           </div>
-          <div class="dept-highlight">Research & Brief Generation</div>
-          <p class="dept-details">
-            • Converts SEO keyword maps into detailed writer briefs in seconds.<br>
-            • Automatically analyzes top 5 ranking competitors to find missing FAQs and headings.<br>
-            • Writers spend their energy on brand voice, storytelling, humor, and client nuance.
-          </p>
-          <div class="dept-benefit">Outcome: Writers produce 2x higher quality content with zero burnout</div>
+          <div class="workflow-box">
+            <strong>The Superpower:</strong> AI is your deep-research assistant, not your replacement:
+            <br>• AI pulls real customer questions and search intent clusters.
+            <br>• Generates optimized heading structures and competitor gap analysis.
+            <br>• Writers focus 100% on persuasive tone, client brand voice, storytelling, and local authority.
+          </div>
+          <div class="output-preview">
+            INPUT: Top 5 ranking competitors + GSC gaps<br>
+            AI OUTPUT: Complete outline + missing FAQs<br>
+            WRITER ROLE: Brand polish & high-converting copy
+          </div>
         </div>
 
-        <div class="dept-action-card" style="border-top-color: #fbbf24;">
-          <div class="dept-title-row">
-            <span class="dept-title">📱 Social Media Team</span>
-            <span class="badge badge-amber">Distribution</span>
+        <!-- UI/UX Team -->
+        <div class="dept-card" style="border-top: 3px solid var(--accent-purple);">
+          <div class="dept-header">
+            <div class="dept-name"><span>🎨</span> UI/UX Team</div>
+            <div class="dept-status">Brand & Conversion Systems</div>
           </div>
-          <div class="dept-highlight">Multi-Channel Repurposing</div>
-          <p class="dept-details">
-            • Turns 1 long-form article into a 5-part LinkedIn post series, Instagram carousel copy, and X threads.<br>
-            • Auto-generates reel scripts and hook ideas tailored for viral reach.<br>
-            • Pre-schedules cohesive weekly campaign calendars for clients.
-          </p>
-          <div class="dept-benefit">Outcome: Maximum client brand reach across all platforms effortlessly</div>
+          <div class="workflow-box">
+            <strong>The Next-Level Upgrade:</strong> Beyond just generating images, building <em>brand-consistent, conversion-engineered design systems</em>:
+            <br>• <strong>Brand-Locked Visual Systems:</strong> Using style references (like <code>--sref</code> and color hex tokens) so every hero banner, icon, and modal maintains 100% brand consistency across the entire client site.
+            <br>• <strong>Predictive Eye-Tracking & CTA Flow:</strong> Engineering image compositions (gaze cues, lighting contrast, perspective lines) that naturally guide the visitor's eye directly to the "Get Quote" button.
+            <br>• <strong>Core Web Vitals Integration:</strong> Packaging assets for mobile performance (WebP/AVIF compression + fixed aspect ratios) to ensure sub-second loads with zero layout shift (CLS = 0).
+          </div>
+          <div class="output-preview">
+            INPUT: Client brand guidelines + Mobile CTA heatmap<br>
+            NEXT-LEVEL AI: Brand-locked asset sets + Visual gaze guidance<br>
+            OUTCOME: High-converting, lightning-fast visual experiences
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 5: What DevOps, Sales & Business Teams Can Do -->
+    <!-- SLIDE 5: Practical Superpowers for Social, DevOps & Sales -->
     <div class="slide" id="slide-5">
-      <div class="slide-tag">Technical & Commercial Teams | Practical Superpowers</div>
-      <h2 class="slide-title">What DevOps, Sales & BD Teams Can Do</h2>
-      <p class="slide-subtitle">
-        Empowering our infrastructure and client-facing teams to close deals faster and protect client uptime.
+      <div class="slide-category">Growth & Infrastructure | Empowering Operations</div>
+      <h2 class="slide-heading">How Social Media, DevOps & Sales Level Up with Live Data</h2>
+      <p class="slide-lead">
+        Reels that drive real phone calls, servers that never choke under pressure, and sales pitches backed by undeniable proof:
       </p>
 
-      <!-- Embedded What To Talk -->
-      <div class="presenter-box show">
-        <div class="presenter-header">🎙️ What You Say To The Room (Slide 5):</div>
-        <div class="presenter-text">
-          "Now look at our <strong>DevOps and Systems team</strong>: Instead of manually reading 50,000 server log lines, an AI agent parses error spikes, identifies slow SQL queries, and alerts us before a server crashes. To our <strong>Business Development and Sales team</strong>: When a new prospect contacts Webnox, AI can run an instant preliminary audit on their website in 60 seconds—showing their traffic drops, broken mobile forms, and speed bottlenecks. When you walk into a client pitch with real data they've never seen before, <strong>you win the client on the spot</strong>."
-        </div>
-      </div>
-
-      <div class="dept-grid">
-        <div class="dept-action-card" style="border-top-color: #c084fc;">
-          <div class="dept-title-row">
-            <span class="dept-title">🛡️ DevOps & Systems</span>
-            <span class="badge badge-purple">Reliability</span>
+      <div class="grid-3">
+        <!-- Social Media Team -->
+        <div class="dept-card" style="border-top: 3px solid var(--accent-amber);">
+          <div class="dept-header">
+            <div class="dept-name"><span>📱</span> Social Media Team</div>
+            <div class="dept-status">Viral Reach</div>
           </div>
-          <div class="dept-highlight">Log Telemetry & Protection</div>
-          <p class="dept-details">
-            • Automated log parsing: scans Nginx/PHP error logs for bot spikes and scrapers.<br>
-            • Identifies memory-heavy WordPress plugins and offloads crons to Linux.<br>
-            • Rapid security triage: identifies compromised REST API posts and backdoor files instantly.
-          </p>
-          <div class="dept-benefit">Outcome: 99.9% Client Uptime & rock-solid server security</div>
+          <div class="workflow-box">
+            <strong>The Superpower:</strong> Connect SEO search intent to your Reels scripts:
+            <br>• When SEO discovers a spike in searches for "how to sell a wrecked car fast", you get the topic immediately.
+            <br>• AI scripts the 3-second hook, pacing, and captions for Instagram & TikTok.
+            <br>• Transforms 1 approved client blog post into a 5-part LinkedIn carousel and short video series.
+          </div>
+          <div class="output-preview">
+            SOURCE: High-impression GSC query trend<br>
+            AI SCRIPT: "3 Things wreckers won't tell you..."<br>
+            RESULT: Direct client phone calls from Instagram
+          </div>
         </div>
 
-        <div class="dept-action-card" style="border-top-color: #38bdf8;">
-          <div class="dept-title-row">
-            <span class="dept-title">💼 Sales & Business Execs</span>
-            <span class="badge badge-info">Revenue</span>
+        <!-- DevOps & Systems -->
+        <div class="dept-card" style="border-top: 3px solid var(--accent-rose);">
+          <div class="dept-header">
+            <div class="dept-name"><span>🛡️</span> DevOps & Systems</div>
+            <div class="dept-status">Zero Downtime</div>
           </div>
-          <div class="dept-highlight">Instant Pitch Audits</div>
-          <p class="dept-details">
-            • Run an instant tech & SEO audit on any prospective client's website before the first call.<br>
-            • Uncover competitor keyword gaps and present concrete ROI projections.<br>
-            • AI generates tailored, professional proposals matching client industry standards.
-          </p>
-          <div class="dept-benefit">Outcome: Higher close rates on premium client retainers</div>
+          <div class="workflow-box">
+            <strong>The Superpower:</strong> Automated server log triage and proactive defense:
+            <br>• Direct ingestion of Nginx/Apache error logs and PHP slow logs.
+            <br>• Detects malicious REST API injections (like the Kamikaze abuse incident) before Google blacklists the site.
+            <br>• Offloads heavy cron jobs automatically so visitor pages load instantly.
+          </div>
+          <div class="output-preview">
+            TELEMETRY: ActionScheduler 5.2s worker lock<br>
+            AI ACTION: Crontab isolation script generated<br>
+            RESULT: 99.9% uptime & 280ms load times
+          </div>
         </div>
 
-        <div class="dept-action-card" style="border-top-color: #34d399;">
-          <div class="dept-title-row">
-            <span class="dept-title">📊 Client Delivery & QA</span>
-            <span class="badge badge-success">Retention</span>
+        <!-- Sales & BD -->
+        <div class="dept-card" style="border-top: 3px solid var(--accent-blue);">
+          <div class="dept-header">
+            <div class="dept-name"><span>💼</span> Sales & BD Team</div>
+            <div class="dept-status">High-Ticket Closes</div>
           </div>
-          <div class="dept-highlight">Automated Client Value Reports</div>
-          <p class="dept-details">
-            • Automated monthly reporting pulling real data from GSC, Analytics, and Uptime.<br>
-            • Clear executive summaries showing clients exactly what revenue growth we created.<br>
-            • Pre-deployment QA checklists verifying forms, schema, and mobile responsiveness.
-          </p>
-          <div class="dept-benefit">Outcome: 100% Client Trust, zero billing disputes, high retention</div>
+          <div class="workflow-box">
+            <strong>The Superpower:</strong> Undeniable proof before your first client call:
+            <br>• Run an instant audit on a prospective client's domain.
+            <br>• Walk into the pitch with their exact traffic drops, broken mobile buttons, and competitor keyword gaps.
+            <br>• When you show prospects data they’ve never seen, you win high-ticket retainers with zero price resistance.
+          </div>
+          <div class="output-preview">
+            PROSPECT: Competitor website audit<br>
+            AI PITCH: "You are losing 40% mobile leads..."<br>
+            RESULT: High-trust, closed deals on call #1
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 6: Motivation & The Way Forward -->
+    <!-- SLIDE 6: The Way Forward Together -->
     <div class="slide" id="slide-6">
-      <div class="slide-tag">The Way Forward | Motivation & Call to Action</div>
-      <h2 class="slide-title">The Future of Webnox: Elevating Everyone</h2>
-      <p class="slide-subtitle">
-        AI is not here to replace anyone. It is here to eliminate the boring, stressful grunt work so you can do your best work.
+      <div class="slide-category">The Way Forward | Execution & Growth</div>
+      <h2 class="slide-heading">The Path Forward: Working Smarter, Together</h2>
+      <p class="slide-lead">
+        AI is not here to replace our people—it is here to eliminate boring mechanical work so every specialist can shine.
       </p>
-
-      <!-- Embedded What To Talk -->
-      <div class="presenter-box show">
-        <div class="presenter-header">🎙️ What You Say To The Room (Slide 6):</div>
-        <div class="presenter-text">
-          "Team leads and colleagues, I want to leave you with this: <strong>AI is not here to replace our people. It is here to elevate our people.</strong> Nobody joined Webnox to spend 4 hours copying cells in Excel, or reformatting social media captions, or hunting through 10,000 server log lines. Our developers have experienced how liberating it is to let AI handle the repetitive code so they can build great products. Now, we want that exact same liberation for SEO, Content, Social, DevOps, and Sales. Over the coming weeks, let’s identify the one repetitive task on your desk that slows you down, and let's automate it together. Thank you MD sir and everyone—let's make Webnox an unstoppable team!"
-        </div>
-      </div>
 
       <div class="grid-2">
         <div class="card" style="border-top: 3px solid var(--accent-green);">
-          <div class="card-title" style="color: var(--accent-green);">
-            <span>🌟</span> Why This Is Great For You
+          <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-green); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">
+            <span>✨</span> What This Means For Your Daily Work
           </div>
-          <ul class="card-list">
-            <li>
-              <span class="icon">✨</span>
-              <div><strong>Zero Repetitive Burnout:</strong> Eliminate tedious manual reporting, spreadsheet formatting, and mechanical busywork.</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.9rem; font-size: 0.95rem; color: var(--text-sub);">
+            <li style="display: flex; gap: 10px;">
+              <span>🌟</span>
+              <div><strong>No More Repetitive Grunt Work:</strong> Stop wasting hours manually copy-pasting spreadsheet cells, formatting captions, or grepping server logs.</div>
             </li>
-            <li>
-              <span class="icon">✨</span>
-              <div><strong>High-Value Strategic Work:</strong> You spend your day making key strategic decisions, talking to clients, and being creative.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>🌟</span>
+              <div><strong>Higher Creative Freedom:</strong> Writers write better stories, designers create better visuals, and developers build better architectures.</div>
             </li>
-            <li>
-              <span class="icon">✨</span>
-              <div><strong>Future-Proof Your Skills:</strong> Mastering AI workflows in your domain makes you one of the most valuable specialists in the industry.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>🌟</span>
+              <div><strong>Cross-Team Harmony:</strong> SEO search insights directly fuel Social Media Reels, WordPress landing pages, and Sales pitches with zero lost context.</div>
             </li>
           </ul>
         </div>
 
         <div class="card" style="border-top: 3px solid var(--accent-blue);">
-          <div class="card-title" style="color: var(--accent-blue);">
-            <span>🤝</span> Our Immediate Next Steps
+          <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">
+            <span>🎯</span> How We Start Tomorrow
           </div>
-          <ul class="card-list">
-            <li>
-              <span class="icon">1️⃣</span>
-              <div><strong>Team Leads Identify 1 Pain Point:</strong> Each lead writes down the single most repetitive task that steals their team's time.</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.9rem; font-size: 0.95rem; color: var(--text-sub);">
+            <li style="display: flex; gap: 10px;">
+              <span>1️⃣</span>
+              <div><strong>Identify 1 Manual Pain Point:</strong> Each team lead writes down the single most tedious, repetitive task their team does weekly.</div>
             </li>
-            <li>
-              <span class="icon">2️⃣</span>
-              <div><strong>Hands-On Collaboration:</strong> Systems & Dev will work directly alongside each department to connect the right data and automate that task.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>2️⃣</span>
+              <div><strong>Connect Real Data:</strong> Systems & Dev will work directly with your team to connect live data (Search Console, analytics, logs) to that task.</div>
             </li>
-            <li>
-              <span class="icon">3️⃣</span>
-              <div><strong>Celebrate the Wins:</strong> We measure our hours saved and client impact together as one unified Webnox family.</div>
+            <li style="display: flex; gap: 10px;">
+              <span>3️⃣</span>
+              <div><strong>Scale and Celebrate:</strong> We measure our saved hours and client wins as one unified company.</div>
             </li>
           </ul>
 
-          <div style="margin-top: 1.2rem; padding: 0.85rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; text-align: center;">
+          <div style="margin-top: 1.2rem; padding: 0.85rem 1.2rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; text-align: center;">
             <div style="font-size: 0.98rem; font-weight: 700; color: var(--accent-blue);">
               "Technology doesn't make an agency great. Empowered people using great technology do."
             </div>
           </div>
         </div>
       </div>
+
+      <div style="margin-top: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+        Thank you MD sir, team leads, and everyone. Let's open the floor for questions and ideas!
+      </div>
     </div>
   </main>
 
   <footer>
-    <div class="nav-hints">
-      <div><span class="key-badge">←</span> <span class="key-badge">→</span> Navigate Slides</div>
-      <div><span class="key-badge">Space</span> Next Slide</div>
-      <div><span class="key-badge">T</span> Toggle "What to Talk" Script</div>
-      <div><span class="key-badge">F</span> Fullscreen</div>
+    <div class="key-hints">
+      <div><span class="kbd">←</span> <span class="kbd">→</span> Navigate Slides</div>
+      <div><span class="kbd">Space</span> Next Slide</div>
+      <div><span class="kbd">F</span> Fullscreen</div>
     </div>
 
     <div class="btn-group">
-      <button class="btn" onclick="toggleAllPresenterBoxes()">🎙️ Toggle Script</button>
-      <button class="btn" onclick="prevSlide()">‹ Prev</button>
-      <button class="btn btn-primary" onclick="nextSlide()">Next ›</button>
+      <button class="nav-btn" onclick="prevSlide()">‹ Previous</button>
+      <button class="nav-btn nav-btn-primary" onclick="nextSlide()">Next Slide ›</button>
     </div>
   </footer>
 
@@ -882,7 +1135,17 @@ SELECT ID, post_title, post_name, post_status, post_type, post_author FROM wp_po
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
     let currentSlide = 0;
-    let scriptVisible = true;
+
+    // Create Navigation Dots
+    const dotsContainer = document.getElementById('dotsContainer');
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => updateSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+    const dots = document.querySelectorAll('.dot');
 
     function updateSlide(index) {
       if (index < 0) index = 0;
@@ -893,7 +1156,11 @@ SELECT ID, post_title, post_name, post_status, post_type, post_author FROM wp_po
         slide.classList.toggle('active', idx === currentSlide);
       });
 
-      document.getElementById('slideCounter').textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+
+      document.getElementById('slideBadge').textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
       document.getElementById('progressBar').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
     }
 
@@ -909,16 +1176,6 @@ SELECT ID, post_title, post_name, post_status, post_type, post_author FROM wp_po
       }
     }
 
-    function toggleAllPresenterBoxes() {
-      scriptVisible = !scriptVisible;
-      const boxes = document.querySelectorAll('.presenter-box');
-      boxes.forEach(box => {
-        box.classList.toggle('show', scriptVisible);
-      });
-      const btn = document.getElementById('scriptToggleBtn');
-      if (btn) btn.classList.toggle('active', scriptVisible);
-    }
-
     function toggleFullScreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
@@ -929,19 +1186,21 @@ SELECT ID, post_title, post_name, post_status, post_type, post_author FROM wp_po
       }
     }
 
-    function switchDataTab(tabIndex) {
-      const tabBtns = document.querySelectorAll('.data-tab-btn');
-      const panels = document.querySelectorAll('.data-panel');
+    // Slide 2 Live Data Tab Switching
+    function showDataView(viewIndex) {
+      const buttons = document.querySelectorAll('.switch-btn');
+      const views = document.querySelectorAll('.data-view');
 
-      tabBtns.forEach((btn, idx) => {
-        btn.classList.toggle('active', idx === tabIndex);
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === viewIndex);
       });
 
-      panels.forEach((p, idx) => {
-        p.classList.toggle('active', idx === tabIndex);
+      views.forEach((v, idx) => {
+        v.classList.toggle('active', idx === viewIndex);
       });
     }
 
+    // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
@@ -949,12 +1208,44 @@ SELECT ID, post_title, post_name, post_status, post_type, post_author FROM wp_po
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
         prevSlide();
-      } else if (e.key === 't' || e.key === 'T') {
-        toggleAllPresenterBoxes();
       } else if (e.key === 'f' || e.key === 'F') {
         toggleFullScreen();
       }
     });
+
+    // Mobile Touch Swipe Navigation
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+      }
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+      // Only trigger if horizontal swipe is dominant and exceeds 45px
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX < 0) {
+          nextSlide(); // Swiped left -> next
+        } else {
+          prevSlide(); // Swiped right -> prev
+        }
+      }
+    }
 
     // Initialize
     updateSlide(0);
