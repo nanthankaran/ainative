@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>From AI-Assisted to AI-Native | Webnox Technologies KT</title>
+  <title>Empowering Every Team with AI | Webnox Technologies KT</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -58,12 +58,12 @@
 
     /* Header Nav */
     header {
-      padding: 1.2rem 2.5rem;
+      padding: 0.9rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      background: rgba(11, 15, 25, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(11, 15, 25, 0.9);
       backdrop-filter: blur(12px);
       z-index: 50;
     }
@@ -83,7 +83,7 @@
       letter-spacing: 0.05em;
     }
     .brand-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -92,13 +92,38 @@
       font-weight: 700;
     }
 
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .script-toggle-btn {
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent-blue);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .script-toggle-btn:hover, .script-toggle-btn.active {
+      background: var(--accent-blue);
+      color: #0b0f19;
+    }
+
     .slide-counter {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--accent-blue);
-      background: rgba(56, 189, 248, 0.1);
+      background: rgba(56, 189, 248, 0.08);
       border: 1px solid rgba(56, 189, 248, 0.2);
-      padding: 4px 14px;
+      padding: 4px 12px;
       border-radius: 20px;
     }
 
@@ -110,22 +135,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 2.5rem;
+      padding: 1.2rem 2.5rem;
     }
 
     .slide {
       position: absolute;
       inset: 0;
-      padding: 2.5rem 4rem;
+      padding: 2rem 4rem 1.5rem 4rem;
       opacity: 0;
       visibility: hidden;
       transform: translateX(40px) scale(0.98);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      max-width: 1350px;
+      justify-content: flex-start;
+      max-width: 1380px;
       margin: 0 auto;
+      overflow-y: auto;
     }
 
     .slide.active {
@@ -136,12 +162,12 @@
 
     /* Typography & Titles */
     .slide-tag {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent-blue);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -157,48 +183,76 @@
     }
 
     .slide-title {
-      font-size: 2.8rem;
+      font-size: 2.3rem;
       font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
+      line-height: 1.18;
+      margin-bottom: 0.4rem;
       background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .slide-subtitle {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 900px;
+      margin-bottom: 1.4rem;
+      max-width: 1050px;
+      line-height: 1.45;
+    }
+
+    /* Embedded "What to Say" Presenter Drawer */
+    .presenter-box {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 10px;
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 1.2rem;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+    .presenter-box.show {
+      display: block;
+    }
+    .presenter-header {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-blue);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .presenter-text {
+      font-size: 0.95rem;
       line-height: 1.5;
+      color: #e2e8f0;
+    }
+    .presenter-text strong {
+      color: var(--accent-green);
     }
 
     /* Cards & Grids */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.8rem;
+      gap: 1.4rem;
       align-items: stretch;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.8rem;
+      border-radius: 14px;
+      padding: 1.4rem;
       position: relative;
       overflow: hidden;
       transition: transform 0.2s ease, border-color 0.2s ease;
@@ -209,107 +263,154 @@
     }
 
     .card-title {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .card-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.75rem;
     }
     .card-list li {
-      font-size: 1.02rem;
-      line-height: 1.5;
+      font-size: 0.95rem;
+      line-height: 1.45;
       color: var(--text-sub);
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
     }
     .card-list li span.icon {
       flex-shrink: 0;
       margin-top: 2px;
     }
 
-    /* Pill Badges */
+    /* Badges */
     .badge {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
+      padding: 2px 7px;
+      border-radius: 5px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .badge-danger { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
     .badge-success { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
     .badge-info { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
     .badge-amber { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+    .badge-purple { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
 
-    /* Comparison Table */
-    .table-container {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      overflow: hidden;
-      width: 100%;
+    /* Interactive Data Console */
+    .data-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 0.75rem;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    th {
+    .data-tab-btn {
       background: rgba(30, 41, 59, 0.7);
-      padding: 1.1rem 1.4rem;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--accent-blue);
-      border-bottom: 1px solid var(--card-border);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    td {
-      padding: 1.1rem 1.4rem;
-      font-size: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: var(--text-sub);
-    }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    td.highlight {
-      color: var(--accent-green);
-      font-weight: 700;
-    }
-    td.faint {
+      border: 1px solid var(--card-border);
       color: var(--text-muted);
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .data-tab-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
     }
 
-    /* Live Data Snippets */
-    .code-box {
-      font-family: 'JetBrains Mono', monospace;
-      background: #070a13;
+    .data-panel {
+      display: none;
+      background: #060913;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
-      padding: 1rem;
-      font-size: 0.85rem;
+      padding: 1.1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #94a3b8;
+      max-height: 290px;
+      overflow-y: auto;
+    }
+    .data-panel.active {
+      display: block;
+    }
+    .data-panel .highlight {
       color: #38bdf8;
-      margin-top: 0.8rem;
-      line-height: 1.4;
-      overflow-x: auto;
+      font-weight: 600;
+    }
+    .data-panel .alert {
+      color: #fb7185;
+      font-weight: 600;
+    }
+    .data-panel .success {
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    /* Department Cards */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+    }
+    .dept-action-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.15rem;
+      border-top: 3px solid var(--accent-blue);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .dept-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dept-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+    .dept-highlight {
+      font-size: 0.85rem;
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+    .dept-details {
+      font-size: 0.88rem;
+      color: var(--text-sub);
+      line-height: 1.42;
+    }
+    .dept-benefit {
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 5px 8px;
+      border-radius: 5px;
+      color: var(--accent-blue);
+      margin-top: auto;
     }
 
     /* Footer Controls */
     footer {
-      padding: 1.2rem 2.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      background: rgba(11, 15, 25, 0.8);
+      padding: 0.9rem 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(11, 15, 25, 0.9);
       backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
@@ -319,8 +420,8 @@
 
     .nav-hints {
       display: flex;
-      gap: 1.5rem;
-      font-size: 0.85rem;
+      gap: 1.2rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
     .key-badge {
@@ -328,9 +429,9 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 4px;
-      padding: 2px 7px;
+      padding: 2px 6px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-main);
       margin-right: 4px;
     }
@@ -343,14 +444,14 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 0.6rem 1.2rem;
+      padding: 0.55rem 1.15rem;
       border-radius: 8px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.2s ease;
     }
     .btn:hover {
@@ -368,85 +469,9 @@
       color: white;
     }
 
-    /* Department Pipeline Cards */
-    .dept-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      border-top: 3px solid var(--accent-blue);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .dept-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .dept-name {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text-main);
-    }
-    .dept-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-    .dept-connect {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--accent-blue);
-      background: rgba(56, 189, 248, 0.08);
-      padding: 4px 8px;
-      border-radius: 4px;
-      margin-top: auto;
-    }
-
-    /* Modal / Speaker Notes Overlay */
-    #speaker-modal {
-      position: fixed;
-      bottom: 80px;
-      right: 30px;
-      width: 420px;
-      background: #0f172a;
-      border: 1px solid #38bdf8;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      padding: 1.2rem;
-      z-index: 200;
-      display: none;
-      animation: fadeIn 0.2s ease;
-    }
-    #speaker-modal.open {
-      display: block;
-    }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(-5px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 0.5rem;
-    }
-    .modal-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--accent-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .modal-body {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: var(--text-sub);
-      max-height: 220px;
-      overflow-y: auto;
     }
   </style>
 </head>
@@ -459,352 +484,378 @@
   <header>
     <div class="brand">
       <div class="brand-badge">WEBNOX</div>
-      <div class="brand-title">From AI-Assisted to <span>AI-Native</span></div>
+      <div class="brand-title">Connecting Live Data | <span>Empowering Every Team</span></div>
     </div>
-    <div class="slide-counter" id="slideCounter">Slide 1 / 6</div>
+    <div class="header-controls">
+      <button class="script-toggle-btn active" id="scriptToggleBtn" onclick="toggleAllPresenterBoxes()">
+        🎙️ What To Talk (Speaker Script)
+      </button>
+      <div class="slide-counter" id="slideCounter">Slide 1 / 6</div>
+    </div>
   </header>
 
   <main>
-    <!-- SLIDE 1: Title & The Vision -->
+    <!-- SLIDE 1: Vision & Motivation -->
     <div class="slide active" id="slide-1">
-      <div class="slide-tag">Webnox Technologies | All-Hands & Team Leads KT</div>
-      <h1 class="slide-title">From AI-Assisted to AI-Native</h1>
+      <div class="slide-tag">Webnox All-Hands KT | Managing Director Directive</div>
+      <h1 class="slide-title">Empowering Every Department with Connected AI</h1>
       <p class="slide-subtitle">
-        How Connecting Live Production Data (GSC API + Server Logs) to AI Agents Transforms Our Workflows Across Every Webnox Department.
+        Our Development Team is already working fully with AI. Now it’s time to empower <strong>SEO, Content, Social Media, DevOps, and Sales</strong> with the exact same superpower.
       </p>
 
-      <div class="grid-3" style="margin-top: 1.5rem;">
+      <!-- Embedded What To Talk -->
+      <div class="presenter-box show">
+        <div class="presenter-header">🎙️ What You Say To The Room (Slide 1):</div>
+        <div class="presenter-text">
+          "Good morning MD sir, team leads, and colleagues. Yesterday our MD set a big goal: to transition Webnox fully into AI across all departments. I know many of you are wondering: <em>'What does this mean for my team? How will this help my everyday work?'</em> Our development team is already working fully with AI every single day. Today, I'm here to show you that <strong>AI isn't just for developers</strong>. When we connect real-time data—like Search Console and our servers—AI removes the tedious, repetitive work from your desk so you can focus on creative strategy, client impact, and growing your career."
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 0.5rem;">
         <div class="card" style="border-top: 3px solid var(--accent-blue);">
           <div class="card-title" style="color: var(--accent-blue);">
-            <span>⚡</span> What is "AI-Native"?
+            <span>🚀</span> Dev Is Already Fully AI
           </div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
-            Not just opening ChatGPT to reword text. AI-Native means our live APIs, servers, databases, and client telemetry are <strong>permanently wired</strong> into automated AI workflows.
+          <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.45;">
+            Our developers code with AI daily. They write features faster and cleaner. But coding is only one piece of the agency puzzle.
           </p>
         </div>
 
         <div class="card" style="border-top: 3px solid var(--accent-green);">
           <div class="card-title" style="color: var(--accent-green);">
-            <span>🔗</span> Real Proof: GSC + Server
+            <span>⚡</span> The Real Superpower
           </div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
-            We tested this live on production (EzyCash, Cloudways). We diagnosed 4 critical business problems in <strong>5 minutes</strong> that usually take 3 to 4 days of cross-department friction.
+          <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.45;">
+            The real breakthrough happens when we <strong>connect live production data</strong> (Search Console + Server Logs). We eliminate guesswork completely.
           </p>
         </div>
 
         <div class="card" style="border-top: 3px solid var(--accent-amber);">
           <div class="card-title" style="color: var(--accent-amber);">
-            <span>🏢</span> The All-Department Vision
+            <span>🎯</span> Elevating Every Department
           </div>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
-            SEO, Content, Social Media, WordPress, Full-Stack Dev, DevOps, and Sales/BD — every team gets connected into a unified <strong>Webnox Company OS</strong>.
+          <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.45;">
+            SEO, Content Writers, Social Media, DevOps, and Sales—everyone gets practical AI workflows that remove boring grunt work forever.
           </p>
         </div>
       </div>
 
-      <div style="margin-top: 2rem; display: flex; align-items: center; gap: 15px;">
-        <div style="font-weight: 700; color: var(--accent-green); font-size: 1.05rem;">Presented by: Karan Singh</div>
-        <div style="color: var(--text-muted); font-size: 0.9rem;">| DevOps & Systems Development Lead</div>
+      <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 15px;">
+        <div style="font-weight: 700; color: var(--accent-green); font-size: 1rem;">Presented by: Karan Singh</div>
+        <div style="color: var(--text-muted); font-size: 0.88rem;">| DevOps & Systems Development Lead</div>
       </div>
     </div>
 
-    <!-- SLIDE 2: Paradigm Shift (AI-Assisted vs. AI-Native) -->
+    <!-- SLIDE 2: Real-Time Data Proof -->
     <div class="slide" id="slide-2">
-      <div class="slide-tag">The Elephant In The Room</div>
-      <h2 class="slide-title">"Our Devs Already Use Antigravity. Why AI-Native?"</h2>
+      <div class="slide-tag">Real-World Evidence | Live Production Connection</div>
+      <h2 class="slide-title">Proof: What Real-Time Data Looks Like</h2>
       <p class="slide-subtitle">
-        Because writing code is only <strong>20% of client delivery</strong>. The remaining <strong>80% is where our projects get delayed</strong>: diagnosis, handoffs, and debugging.
+        Here is the actual data generated when we connect Google Search Console and Cloudways server logs into an AI agent. Zero speculation.
       </p>
 
-      <!-- Reality Check Highlight Box -->
-      <div style="background: rgba(56, 189, 248, 0.08); border-left: 4px solid var(--accent-blue); padding: 0.85rem 1.4rem; border-radius: 8px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
-        <div style="font-size: 0.98rem; color: var(--text-main);">
-          ⚡ <strong>Current Reality:</strong> A developer opens Antigravity locally to write functions fast. But Antigravity has <em>zero visibility</em> into Google Search Console rankings, server logs, or SEO team needs until someone manually writes a ticket 3 days later!
+      <!-- Embedded What To Talk -->
+      <div class="presenter-box show">
+        <div class="presenter-header">🎙️ What You Say To The Room (Slide 2):</div>
+        <div class="presenter-text">
+          "This is not theory or marketing hype. On our client site <strong>ezycashforcars.com.au</strong>, we connected the live Google Search Console API and the Cloudways production server directly to our AI agent. Look at what happened: Instead of an SEO analyst spending 3 days in Excel comparing CSVs, the connected AI instantly pulled the <strong>exact 4 core URLs that had Yoast noindex flags</strong> causing a 64.9% traffic collapse. Then it read the server slow log and found <strong>ActionScheduler queue runners freezing worker threads for 5 seconds</strong> during user visits. And it caught mobile users <strong>tapping submit 6 times</strong> because of missing debounce. When live systems are connected, facts are instantaneous."
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);">
-          <div class="card-title" style="color: #f87171;">
-            <span>❌</span> Level 1: Antigravity in Isolation (Where We Are)
-            <span class="badge badge-danger">Siloed Tool</span>
-          </div>
-          <ul class="card-list">
-            <li>
-              <span class="icon">🛑</span>
-              <div><strong>Isolated to Dev Editors:</strong> Only developers use Antigravity. SEO, Content, and Sales are still stuck in manual spreadsheets.</div>
-            </li>
-            <li>
-              <span class="icon">🛑</span>
-              <div><strong>Blind to Production Telemetry:</strong> Local Antigravity cannot see live GSC indexing drops, 500 errors, or database lockups.</div>
-            </li>
-            <li>
-              <span class="icon">🛑</span>
-              <div><strong>3-Day Handoff Lag:</strong> SEO spots a traffic drop -> writes an email -> Dev reads it 2 days later -> Dev asks DevOps for logs -> Dev finally opens Antigravity.</div>
-            </li>
-            <li>
-              <span class="icon">🛑</span>
-              <div><strong>Ad-Hoc Prompting:</strong> Every developer writes their own prompts from scratch; solutions are never standardized across Webnox.</div>
-            </li>
-          </ul>
-        </div>
+      <div class="data-tabs">
+        <button class="data-tab-btn active" onclick="switchDataTab(0)">📊 1. GSC Search Telemetry</button>
+        <button class="data-tab-btn" onclick="switchDataTab(1)">⚙️ 2. Server Slow Query Log</button>
+        <button class="data-tab-btn" onclick="switchDataTab(2)">🔒 3. Database & Abuse Triage</button>
+      </div>
 
-        <div class="card" style="border-color: rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.03);">
-          <div class="card-title" style="color: var(--accent-green);">
-            <span>🚀</span> Level 2 & 3: Antigravity as Company OS (AI-Native)
-            <span class="badge badge-success">Connected Ecosystem</span>
-          </div>
-          <ul class="card-list">
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>Direct Systems Telemetry:</strong> Antigravity is wired directly to GSC APIs, Cloudways SFTP, and live MySQL databases.</div>
-            </li>
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>Multi-Department Pipeline:</strong> SEO runs an audit skill -> Antigravity generates clean code specs -> Dev validates and deploys.</div>
-            </li>
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>Instant Root-Cause Triage:</strong> Solves complex problems (like ranking drops or server slowdowns) in <strong>5 minutes</strong> instead of 3 days.</div>
-            </li>
-            <li>
-              <span class="icon">✅</span>
-              <div><strong>Shared Company Skills:</strong> Standardized, version-controlled `.md` skills in Git so any team lead can run high-precision audits.</div>
-            </li>
-          </ul>
-        </div>
+      <!-- Tab 1: GSC -->
+      <div class="data-panel active" id="tab-0">
+<span class="highlight">// Live Google Search Console API Telemetry Query (ezycashforcars.com.au)</span>
+{
+  <span class="highlight">"query"</span>: "cash for cars brisbane",
+  <span class="highlight">"impressions"</span>: 86634,
+  <span class="highlight">"clicks"</span>: 617,
+  <span class="alert">"ctr"</span>: "0.71%",             <span class="alert">// CANNIBALIZATION TRAP: Homepage ranking instead of landing page</span>
+  <span class="highlight">"position"</span>: 4.2,
+  <span class="alert">"de_indexed_urls"</span>: [
+    { <span class="highlight">"url"</span>: "https://ezycashforcars.com.au/cash-for-cars-brisbane/", <span class="alert">"yoast_meta"</span>: "_yoast_wpseo_meta-robots-noindex = 1" },
+    { <span class="highlight">"url"</span>: "https://ezycashforcars.com.au/scrap-car-removal-sydney/", <span class="alert">"yoast_meta"</span>: "_yoast_wpseo_meta-robots-noindex = 1" }
+  ],
+  <span class="success">"traffic_drop_detected"</span>: "-64.9% organic clicks over 7-day period"
+}
+      </div>
+
+      <!-- Tab 2: Server Slow Log -->
+      <div class="data-panel" id="tab-1">
+<span class="highlight"># Cloudways PHP-FPM Slow Log: /home/master/applications/xyz/logs/php-app.slow.log</span>
+[26-Oct-2026 14:22:08]  [pool xyz] pid 19842
+<span class="alert">script_filename = /home/master/applications/xyz/public_html/index.php</span>
+[0x00007f3b89] <span class="alert">mysqli_query()</span> /public_html/wp-includes/class-wpdb.php:2344
+[0x00007f3b90] <span class="highlight">ActionScheduler_DBStore->query_actions()</span>:5.242s
+<span class="alert">ROOT CAUSE FOUND: Heavy background cron jobs were executing during live customer visits!</span>
+<span class="success">AI ACTION: Offloaded ActionScheduler to system crontab in 2 lines. Site latency restored to 280ms.</span>
+      </div>
+
+      <!-- Tab 3: Security & DB -->
+      <div class="data-panel" id="tab-2">
+<span class="highlight"># Netcraft / Abusix Incident Triage (wreckersnewcastle.com.au/kz.htm)</span>
+Target: "Phishing abuse complaint on /kz.htm"
+<span class="highlight">Direct DB Inspection via AI:</span>
+SELECT ID, post_title, post_name, post_status, post_type, post_author FROM wp_posts WHERE post_name = 'kz';
+<span class="alert">Result: Found Post ID 8022 | Title: 'Kamikaze' | Author: ID 15 | Type: 'post'</span>
+<span class="success">DIAGNOSIS: /kz.htm was NOT a file on disk! It was a malicious WordPress post injected via REST API.</span>
+<span class="success">FIX: Deleted post 8022, locked down REST API endpoints for non-admins. Zero client downtime.</span>
       </div>
     </div>
 
-    <!-- SLIDE 3: The Live Proof (GSC + Server Integration) -->
+    <!-- SLIDE 3: Dev is Already AI — Why Others Should Connect -->
     <div class="slide" id="slide-3">
-      <div class="slide-tag">Live Production Case Study</div>
-      <h2 class="slide-title">Why Connecting Live Data Is 10x Useful</h2>
+      <div class="slide-tag">Bridging The Gap | Why We Must Connect Everyone</div>
+      <h2 class="slide-title">Our Devs Work in AI. Why Is It Time for Everyone Else?</h2>
       <p class="slide-subtitle">
-        Audit on <strong>ezycashforcars.com.au</strong>: Ingested 16 months of GSC search telemetry + 500MB server logs into AI in 5 minutes.
+        Having only developers use AI is like having a Formula 1 engine in a car with flat tires. When the whole company connects, the whole company moves fast.
       </p>
 
-      <div class="grid-4">
-        <div class="card" style="border-left: 4px solid var(--accent-amber);">
-          <div class="card-title" style="color: var(--accent-amber); font-size: 1.15rem;">
-            <span>1.</span> Core Money Pages De-Indexed
-          </div>
-          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
-            GSC URL Inspection API showed 4 core money pages (Brisbane, Sydney Scrap, etc.) were flagged with <code>noindex</code> in Yoast SEO.
-          </p>
-          <div class="code-box">
-            Discovery: 64.9% traffic collapse in 7 days detected instantly.
-          </div>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--accent-blue);">
-          <div class="card-title" style="color: var(--accent-blue); font-size: 1.15rem;">
-            <span>2.</span> Position #4 Cannibalization Trap
-          </div>
-          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
-            GSC Query API revealed <strong>86,634 impressions</strong> on commercial terms captured only 0.71% CTR because generic homepage ranked instead of target city page.
-          </p>
-          <div class="code-box">
-            Solution: Intent rewrites & canonical adjustments queued for Dev.
-          </div>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--accent-green);">
-          <div class="card-title" style="color: var(--accent-green); font-size: 1.15rem;">
-            <span>3.</span> Server Slow Query Bottlenecks
-          </div>
-          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
-            Cloudways <code>php-app.slow.log</code> cross-referenced with GSC revealed ActionScheduler queue runner executing during live visitor requests (>5.0s response times).
-          </p>
-          <div class="code-box">
-            Solution: Offloaded heavy jobs to system crontab in 2 lines.
-          </div>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--accent-rose);">
-          <div class="card-title" style="color: var(--accent-rose); font-size: 1.15rem;">
-            <span>4.</span> Multi-Click Lead Duplication
-          </div>
-          <p style="font-size: 0.92rem; color: var(--text-sub); line-height: 1.45;">
-            Server access logs showed mobile visitors tapping "Get Quote" 6 times in 10s due to lack of JS button debounce, flooding sales inbox with duplicates.
-          </p>
-          <div class="code-box">
-            Solution: Added JS button debounce script to stop spam.
-          </div>
+      <!-- Embedded What To Talk -->
+      <div class="presenter-box show">
+        <div class="presenter-header">🎙️ What You Say To The Room (Slide 3):</div>
+        <div class="presenter-text">
+          "Right now, our developers use AI inside their code editor to build pages and write code fast. <strong>That's fantastic.</strong> But what happens before and after code is written? The SEO team is still manually copying numbers from Search Console into spreadsheets. Content writers are manually generating outlines. The social media team is creating posts one-by-one from scratch. DevOps is manually sifting through thousands of log lines. If only our developers use AI, our client projects still get delayed waiting for research, content, and handoffs. <strong>When every team uses AI, the entire agency accelerates together.</strong>"
         </div>
       </div>
-    </div>
-
-    <!-- SLIDE 4: Speed & ROI Table -->
-    <div class="slide" id="slide-4">
-      <div class="slide-tag">Operational Impact & ROI</div>
-      <h2 class="slide-title">Old Siloed Way vs. AI-Native Connected Way</h2>
-      <p class="slide-subtitle">
-        How much time and client revenue we save across common Webnox workflows.
-      </p>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Workflow / Operation</th>
-              <th>Traditional Siloed Way</th>
-              <th>AI-Native Connected Way</th>
-              <th>Impact for Webnox</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Technical SEO & Traffic Drop Audit</strong></td>
-              <td class="faint">3 to 4 Days (Manual CSV downloads, spreadsheet formulas, team meetings)</td>
-              <td class="highlight">5 Minutes (GSC API + Logs ingestion in AI agent)</td>
-              <td><span class="badge badge-success">50x Faster</span></td>
-            </tr>
-            <tr>
-              <td><strong>Security Incident & Defacement Triage</strong></td>
-              <td class="faint">1 to 2 Days (Finger-pointing between hosting and developers)</td>
-              <td class="highlight">15 Minutes (Direct server log analysis + DB scan)</td>
-              <td><span class="badge badge-success">Zero SLA Breach</span></td>
-            </tr>
-            <tr>
-              <td><strong>Cross-Team Handoff (SEO -> Dev)</strong></td>
-              <td class="faint">Vague emails, lost requirements, wrong code deployed</td>
-              <td class="highlight">Auto-generated Markdown specs with exact line-level fixes</td>
-              <td><span class="badge badge-info">Zero Rework</span></td>
-            </tr>
-            <tr>
-              <td><strong>Monthly Client Performance Review</strong></td>
-              <td class="faint">4 Hours per client manually compiling screenshots</td>
-              <td class="highlight">10 Minutes (Automated multi-source executive deck)</td>
-              <td><span class="badge badge-amber">100% Client Trust</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div style="margin-top: 1.8rem; background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
-        <div style="font-size: 1.05rem; color: var(--text-main);">
-          <strong>Bottom Line for Management:</strong> We don't hire more people to do repetitive grunt work. We give our existing specialists AI-native tooling so they deliver 10x higher quality in 10% of the time.
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 5: How Every Department Connects -->
-    <div class="slide" id="slide-5">
-      <div class="slide-tag">Cross-Department Architecture</div>
-      <h2 class="slide-title">How Every Team Connects at Webnox</h2>
-      <p class="slide-subtitle">
-        One client brief flows automatically across connected department agents with zero lost context.
-      </p>
-
-      <div class="grid-3">
-        <div class="dept-card" style="border-top-color: #38bdf8;">
-          <div class="dept-header">
-            <span class="dept-name">1. Business / Sales</span>
-            <span class="badge badge-info">Ingestion</span>
-          </div>
-          <p class="dept-desc">Captures client brief & target geography. AI agent generates structured project scope, tech requirements, and deliverables.</p>
-          <div class="dept-connect">Handoff -> SEO & Strategy</div>
-        </div>
-
-        <div class="dept-card" style="border-top-color: #34d399;">
-          <div class="dept-header">
-            <span class="dept-name">2. SEO & SEM Team</span>
-            <span class="badge badge-success">Analysis</span>
-          </div>
-          <p class="dept-desc">Pulls live GSC queries & competitor gaps. AI generates keyword intent clusters, canonical rules, and URL architecture.</p>
-          <div class="dept-connect">Handoff -> Content & Dev</div>
-        </div>
-
-        <div class="dept-card" style="border-top-color: #fbbf24;">
-          <div class="dept-header">
-            <span class="dept-name">3. Content & Social</span>
-            <span class="badge badge-amber">Production</span>
-          </div>
-          <p class="dept-desc">Consumes keyword maps. AI drafts localized copy and social calendars; human writers polish brand voice and client nuance.</p>
-          <div class="dept-connect">Handoff -> WordPress Dev</div>
-        </div>
-
-        <div class="dept-card" style="border-top-color: #c084fc;">
-          <div class="dept-header">
-            <span class="dept-name">4. WordPress & Dev</span>
-            <span class="badge" style="background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3);">Engineering</span>
-          </div>
-          <p class="dept-desc">Builds pages using AI-validated code, automatically injects Schema.org markup, optimizes Core Web Vitals, and adds form debounce.</p>
-          <div class="dept-connect">Handoff -> DevOps Team</div>
-        </div>
-
-        <div class="dept-card" style="border-top-color: #fb7185;">
-          <div class="dept-header">
-            <span class="dept-name">5. DevOps & Infrastructure</span>
-            <span class="badge" style="background: rgba(251, 113, 133, 0.15); color: #fb7185; border: 1px solid rgba(251, 113, 133, 0.3);">Reliability</span>
-          </div>
-          <p class="dept-desc">Monitors server logs, automates database indexing, isolates cron jobs, verifies SSL certificates, and hardens REST APIs against exploits.</p>
-          <div class="dept-connect">Handoff -> Delivery</div>
-        </div>
-
-        <div class="dept-card" style="border-top-color: #2dd4bf;">
-          <div class="dept-header">
-            <span class="dept-name">6. Client Delivery & QA</span>
-            <span class="badge" style="background: rgba(45, 212, 191, 0.15); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.3);">Signoff</span>
-          </div>
-          <p class="dept-desc">Automated QA runs final checks; AI generates client-ready executive summary and live verification links for team lead approval.</p>
-          <div class="dept-connect">Result: 100% Verified Quality</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 6: The 30-Day Rollout & Call to Action -->
-    <div class="slide" id="slide-6">
-      <div class="slide-tag">Action Plan & Next Steps</div>
-      <h2 class="slide-title">Building the "Webnox Company OS"</h2>
-      <p class="slide-subtitle">
-        How we will roll this out practically over the next 30 days without disrupting active client work.
-      </p>
 
       <div class="grid-2">
-        <div class="card" style="border-top: 3px solid var(--accent-blue);">
-          <div class="card-title" style="color: var(--accent-blue);">
-            <span>📚</span> Standard Webnox Skills Repo
+        <div class="card" style="border-left: 4px solid var(--accent-rose); background: rgba(239, 68, 68, 0.03);">
+          <div class="card-title" style="color: #f87171;">
+            <span>⚠️</span> The Current Bottleneck (Only Dev Uses AI)
           </div>
-          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
-            Instead of prompting from scratch, we build reusable, version-controlled markdown skills for every team:
-          </p>
-          <ul class="card-list" style="font-size: 0.92rem;">
-            <li><strong>seo-ranking-diagnostic.md:</strong> Automated GSC query drops & cannibalization audit.</li>
-            <li><strong>wordpress-technical-audit.md:</strong> Automated schema, permalink, and debounce validator.</li>
-            <li><strong>content-brief-generator.md:</strong> Converts SEO target clusters into writer-ready outlines.</li>
-            <li><strong>server-log-analyzer.md:</strong> Instant parser for PHP slow logs and malicious bot spikes.</li>
-            <li><strong>client-weekly-reporter.md:</strong> Summarizes weekly traffic wins and work completed.</li>
+          <ul class="card-list">
+            <li>
+              <span class="icon">❌</span>
+              <div><strong>SEO Team:</strong> Spends hours downloading CSVs and running manual VLOOKUP formulas to find keyword drops.</div>
+            </li>
+            <li>
+              <span class="icon">❌</span>
+              <div><strong>Content Team:</strong> Stares at a blank page waiting for target keywords and writing outlines from scratch.</div>
+            </li>
+            <li>
+              <span class="icon">❌</span>
+              <div><strong>Social Media Team:</strong> Manually rewrites the same blog article for 4 different social platforms.</div>
+            </li>
+            <li>
+              <span class="icon">❌</span>
+              <div><strong>Result:</strong> Even if Dev finishes a page quickly, the project waits days for SEO strategy and content approval.</div>
+            </li>
           </ul>
         </div>
 
+        <div class="card" style="border-left: 4px solid var(--accent-green); background: rgba(52, 211, 153, 0.03);">
+          <div class="card-title" style="color: var(--accent-green);">
+            <span>🚀</span> The Connected Vision (All Teams Empowered)
+          </div>
+          <ul class="card-list">
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>SEO Team:</strong> Connects GSC API; AI automatically discovers cannibalization and intent gaps across 1,000 queries.</div>
+            </li>
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>Content Team:</strong> AI drafts high-converting outlines and semantic headings; writers polish brand voice and tone.</div>
+            </li>
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>Social Media Team:</strong> 1 approved blog post automatically transforms into 5 LinkedIn hooks, Instagram slides, and video scripts.</div>
+            </li>
+            <li>
+              <span class="icon">✅</span>
+              <div><strong>Result:</strong> Seamless cross-team harmony. No team feels overworked with mechanical, repetitive tasks.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: What SEO, Content & Social Media Teams Can Do -->
+    <div class="slide" id="slide-4">
+      <div class="slide-tag">Marketing & Organic Teams | Practical Superpowers</div>
+      <h2 class="slide-title">What SEO, Content & Social Teams Can Do</h2>
+      <p class="slide-subtitle">
+        Concrete ways AI eliminates repetitive busywork and gives creative control back to our marketing professionals.
+      </p>
+
+      <!-- Embedded What To Talk -->
+      <div class="presenter-box show">
+        <div class="presenter-header">🎙️ What You Say To The Room (Slide 4):</div>
+        <div class="presenter-text">
+          "To our <strong>SEO team</strong>: Imagine never having to manually cross-reference 5,000 search queries in Excel ever again. An AI connected to GSC can instantly show you which page lost impressions, why Google prefers the wrong URL, and which keywords are ready to jump from page 2 to page 1. To our <strong>Content Writers</strong>: AI doesn't replace your storytelling—it gives you the complete research, outline, and competitor analysis so you can write the best article in half the time. To our <strong>Social Media team</strong>: When a blog is published, AI instantly adapts it into LinkedIn carousels, engaging Instagram captions, and short video reels. You curate and direct; AI does the mechanical reformatting."
+        </div>
+      </div>
+
+      <div class="dept-grid">
+        <div class="dept-action-card" style="border-top-color: #38bdf8;">
+          <div class="dept-title-row">
+            <span class="dept-title">🔍 SEO & SEM Team</span>
+            <span class="badge badge-info">Search</span>
+          </div>
+          <div class="dept-highlight">Automated Search Intelligence</div>
+          <p class="dept-details">
+            • Automated GSC query clustering (identifies queries ranking on Position 4–10).<br>
+            • Instant cannibalization scanner (finds when homepage steals traffic from landing pages).<br>
+            • Automated Schema markup verification and Core Web Vitals checks.
+          </p>
+          <div class="dept-benefit">Outcome: 100% Data-Driven SEO without manual spreadsheets</div>
+        </div>
+
+        <div class="dept-action-card" style="border-top-color: #34d399;">
+          <div class="dept-title-row">
+            <span class="dept-title">✍️ Content Writing Team</span>
+            <span class="badge badge-success">Creative</span>
+          </div>
+          <div class="dept-highlight">Research & Brief Generation</div>
+          <p class="dept-details">
+            • Converts SEO keyword maps into detailed writer briefs in seconds.<br>
+            • Automatically analyzes top 5 ranking competitors to find missing FAQs and headings.<br>
+            • Writers spend their energy on brand voice, storytelling, humor, and client nuance.
+          </p>
+          <div class="dept-benefit">Outcome: Writers produce 2x higher quality content with zero burnout</div>
+        </div>
+
+        <div class="dept-action-card" style="border-top-color: #fbbf24;">
+          <div class="dept-title-row">
+            <span class="dept-title">📱 Social Media Team</span>
+            <span class="badge badge-amber">Distribution</span>
+          </div>
+          <div class="dept-highlight">Multi-Channel Repurposing</div>
+          <p class="dept-details">
+            • Turns 1 long-form article into a 5-part LinkedIn post series, Instagram carousel copy, and X threads.<br>
+            • Auto-generates reel scripts and hook ideas tailored for viral reach.<br>
+            • Pre-schedules cohesive weekly campaign calendars for clients.
+          </p>
+          <div class="dept-benefit">Outcome: Maximum client brand reach across all platforms effortlessly</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: What DevOps, Sales & Business Teams Can Do -->
+    <div class="slide" id="slide-5">
+      <div class="slide-tag">Technical & Commercial Teams | Practical Superpowers</div>
+      <h2 class="slide-title">What DevOps, Sales & BD Teams Can Do</h2>
+      <p class="slide-subtitle">
+        Empowering our infrastructure and client-facing teams to close deals faster and protect client uptime.
+      </p>
+
+      <!-- Embedded What To Talk -->
+      <div class="presenter-box show">
+        <div class="presenter-header">🎙️ What You Say To The Room (Slide 5):</div>
+        <div class="presenter-text">
+          "Now look at our <strong>DevOps and Systems team</strong>: Instead of manually reading 50,000 server log lines, an AI agent parses error spikes, identifies slow SQL queries, and alerts us before a server crashes. To our <strong>Business Development and Sales team</strong>: When a new prospect contacts Webnox, AI can run an instant preliminary audit on their website in 60 seconds—showing their traffic drops, broken mobile forms, and speed bottlenecks. When you walk into a client pitch with real data they've never seen before, <strong>you win the client on the spot</strong>."
+        </div>
+      </div>
+
+      <div class="dept-grid">
+        <div class="dept-action-card" style="border-top-color: #c084fc;">
+          <div class="dept-title-row">
+            <span class="dept-title">🛡️ DevOps & Systems</span>
+            <span class="badge badge-purple">Reliability</span>
+          </div>
+          <div class="dept-highlight">Log Telemetry & Protection</div>
+          <p class="dept-details">
+            • Automated log parsing: scans Nginx/PHP error logs for bot spikes and scrapers.<br>
+            • Identifies memory-heavy WordPress plugins and offloads crons to Linux.<br>
+            • Rapid security triage: identifies compromised REST API posts and backdoor files instantly.
+          </p>
+          <div class="dept-benefit">Outcome: 99.9% Client Uptime & rock-solid server security</div>
+        </div>
+
+        <div class="dept-action-card" style="border-top-color: #38bdf8;">
+          <div class="dept-title-row">
+            <span class="dept-title">💼 Sales & Business Execs</span>
+            <span class="badge badge-info">Revenue</span>
+          </div>
+          <div class="dept-highlight">Instant Pitch Audits</div>
+          <p class="dept-details">
+            • Run an instant tech & SEO audit on any prospective client's website before the first call.<br>
+            • Uncover competitor keyword gaps and present concrete ROI projections.<br>
+            • AI generates tailored, professional proposals matching client industry standards.
+          </p>
+          <div class="dept-benefit">Outcome: Higher close rates on premium client retainers</div>
+        </div>
+
+        <div class="dept-action-card" style="border-top-color: #34d399;">
+          <div class="dept-title-row">
+            <span class="dept-title">📊 Client Delivery & QA</span>
+            <span class="badge badge-success">Retention</span>
+          </div>
+          <div class="dept-highlight">Automated Client Value Reports</div>
+          <p class="dept-details">
+            • Automated monthly reporting pulling real data from GSC, Analytics, and Uptime.<br>
+            • Clear executive summaries showing clients exactly what revenue growth we created.<br>
+            • Pre-deployment QA checklists verifying forms, schema, and mobile responsiveness.
+          </p>
+          <div class="dept-benefit">Outcome: 100% Client Trust, zero billing disputes, high retention</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Motivation & The Way Forward -->
+    <div class="slide" id="slide-6">
+      <div class="slide-tag">The Way Forward | Motivation & Call to Action</div>
+      <h2 class="slide-title">The Future of Webnox: Elevating Everyone</h2>
+      <p class="slide-subtitle">
+        AI is not here to replace anyone. It is here to eliminate the boring, stressful grunt work so you can do your best work.
+      </p>
+
+      <!-- Embedded What To Talk -->
+      <div class="presenter-box show">
+        <div class="presenter-header">🎙️ What You Say To The Room (Slide 6):</div>
+        <div class="presenter-text">
+          "Team leads and colleagues, I want to leave you with this: <strong>AI is not here to replace our people. It is here to elevate our people.</strong> Nobody joined Webnox to spend 4 hours copying cells in Excel, or reformatting social media captions, or hunting through 10,000 server log lines. Our developers have experienced how liberating it is to let AI handle the repetitive code so they can build great products. Now, we want that exact same liberation for SEO, Content, Social, DevOps, and Sales. Over the coming weeks, let’s identify the one repetitive task on your desk that slows you down, and let's automate it together. Thank you MD sir and everyone—let's make Webnox an unstoppable team!"
+        </div>
+      </div>
+
+      <div class="grid-2">
         <div class="card" style="border-top: 3px solid var(--accent-green);">
           <div class="card-title" style="color: var(--accent-green);">
-            <span>🗓️</span> 30-Day Phased Implementation
+            <span>🌟</span> Why This Is Great For You
           </div>
-          <ul class="card-list" style="font-size: 0.95rem;">
+          <ul class="card-list">
             <li>
-              <span class="icon">🔹</span>
-              <div><strong>Week 1 (Workflow Mapping):</strong> Each Team Lead lists their top 2 repetitive tasks that cause delays.</div>
+              <span class="icon">✨</span>
+              <div><strong>Zero Repetitive Burnout:</strong> Eliminate tedious manual reporting, spreadsheet formatting, and mechanical busywork.</div>
             </li>
             <li>
-              <span class="icon">🔹</span>
-              <div><strong>Week 2–3 (Pilot Automations):</strong> DevOps & Dev teams assist each department in creating their first automated skill.</div>
+              <span class="icon">✨</span>
+              <div><strong>High-Value Strategic Work:</strong> You spend your day making key strategic decisions, talking to clients, and being creative.</div>
             </li>
             <li>
-              <span class="icon">🔹</span>
-              <div><strong>Week 4 (Review & Scorecard):</strong> Present hours saved, error reductions, and turnaround speed to the MD.</div>
+              <span class="icon">✨</span>
+              <div><strong>Future-Proof Your Skills:</strong> Mastering AI workflows in your domain makes you one of the most valuable specialists in the industry.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--accent-blue);">
+          <div class="card-title" style="color: var(--accent-blue);">
+            <span>🤝</span> Our Immediate Next Steps
+          </div>
+          <ul class="card-list">
+            <li>
+              <span class="icon">1️⃣</span>
+              <div><strong>Team Leads Identify 1 Pain Point:</strong> Each lead writes down the single most repetitive task that steals their team's time.</div>
             </li>
             <li>
-              <span class="icon">🔒</span>
-              <div><strong>Security & Governance:</strong> Zero client data leaks. Strict human review before any code or content goes live.</div>
+              <span class="icon">2️⃣</span>
+              <div><strong>Hands-On Collaboration:</strong> Systems & Dev will work directly alongside each department to connect the right data and automate that task.</div>
+            </li>
+            <li>
+              <span class="icon">3️⃣</span>
+              <div><strong>Celebrate the Wins:</strong> We measure our hours saved and client impact together as one unified Webnox family.</div>
             </li>
           </ul>
 
-          <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 8px;">
-            <div style="font-size: 0.95rem; font-style: italic; color: var(--accent-amber); text-align: center;">
-              "If Webnox were founded today, would we build our workflows the way we do now? Let's build the future together."
+          <div style="margin-top: 1.2rem; padding: 0.85rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.98rem; font-weight: 700; color: var(--accent-blue);">
+              "Technology doesn't make an agency great. Empowered people using great technology do."
             </div>
           </div>
         </div>
@@ -812,27 +863,16 @@
     </div>
   </main>
 
-  <!-- Speaker Notes Overlay Modal -->
-  <div id="speaker-modal">
-    <div class="modal-header">
-      <span class="modal-title">🎙️ Speaker Notes</span>
-      <button onclick="toggleSpeakerNotes()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;">✕</button>
-    </div>
-    <div class="modal-body" id="modalText">
-      Loading speaker notes...
-    </div>
-  </div>
-
   <footer>
     <div class="nav-hints">
       <div><span class="key-badge">←</span> <span class="key-badge">→</span> Navigate Slides</div>
       <div><span class="key-badge">Space</span> Next Slide</div>
-      <div><span class="key-badge">N</span> Toggle Speaker Notes</div>
+      <div><span class="key-badge">T</span> Toggle "What to Talk" Script</div>
       <div><span class="key-badge">F</span> Fullscreen</div>
     </div>
 
     <div class="btn-group">
-      <button class="btn" onclick="toggleSpeakerNotes()">🎙️ Notes</button>
+      <button class="btn" onclick="toggleAllPresenterBoxes()">🎙️ Toggle Script</button>
       <button class="btn" onclick="prevSlide()">‹ Prev</button>
       <button class="btn btn-primary" onclick="nextSlide()">Next ›</button>
     </div>
@@ -842,15 +882,7 @@
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
     let currentSlide = 0;
-
-    const speakerNotes = [
-      "SLIDE 1 (0:00 - 1:30): Good morning MD sir, team leads, and colleagues. Today's KT is about our transition from being AI-assisted to AI-native. AI-native doesn't mean opening ChatGPT to ask questions. It means connecting our real data—Google Search Console, server logs, code repos, and databases—directly to AI agents so our teams stop doing mechanical busywork.",
-      "SLIDE 2 (1:30 - 3:00): Now, some of you might be thinking: 'Wait, our developers are already using Antigravity to write code every day! Aren't we already AI-native?' The answer is: writing code is only 20% of the puzzle. The remaining 80% is where our projects get stuck! Antigravity sitting on a developer's laptop has zero visibility into Google Search Console rankings dropping 65%. It doesn't see Cloudways server slow logs or database locks. And our SEO, Content, and Sales teams are completely cut off from it. Moving to AI-native means Antigravity connects directly to live telemetry (GSC + Server Logs) and connects all departments together into one automated pipeline.",
-      "SLIDE 3 (3:00 - 5:30): Here is the real proof from our live tests on Ezy Cash For Cars. When we connected the GSC API and Cloudways server logs to our AI coding agent, in 5 minutes it found 4 critical things: 1) Four core money pages had noindex tags causing a 65% drop; 2) The homepage was cannibalizing city queries; 3) The database slow log showed background jobs running during user visits; and 4) Mobile users were clicking submit 6 times because the button lacked a debounce script. 5 minutes replaced 4 days of manual debugging!",
-      "SLIDE 4 (5:30 - 7:00): Look at the business numbers. A technical SEO audit goes from 4 days to 5 minutes. Security incident triage goes from 2 days of panic to 15 minutes. Cross-team handoffs are clean Markdown specs with zero misunderstandings. We don't need to work overtime on mechanical tasks; we can take on 3x more clients with the exact same team.",
-      "SLIDE 5 (7:00 - 8:30): Notice that every single department has a clear role here. Sales enters client goals -> SEO gets keyword intent -> Content writers produce copy -> Dev deploys validated code -> DevOps monitors performance -> Client delivery presents the final wins. Nobody is replaced. Every team member becomes 5x more impactful.",
-      "SLIDE 6 (8:30 - 10:00): Our plan for the next 30 days: We are building the Webnox Company OS with standardized, reusable AI skills in Git. In Week 1, each team lead will identify 1 repetitive task to automate. By Week 4, we measure our time saved and client impact. Thank you MD sir and team leads—let's open the floor for your thoughts."
-    ];
+    let scriptVisible = true;
 
     function updateSlide(index) {
       if (index < 0) index = 0;
@@ -863,7 +895,6 @@
 
       document.getElementById('slideCounter').textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
       document.getElementById('progressBar').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
-      document.getElementById('modalText').textContent = speakerNotes[currentSlide];
     }
 
     function nextSlide() {
@@ -878,9 +909,14 @@
       }
     }
 
-    function toggleSpeakerNotes() {
-      const modal = document.getElementById('speaker-modal');
-      modal.classList.toggle('open');
+    function toggleAllPresenterBoxes() {
+      scriptVisible = !scriptVisible;
+      const boxes = document.querySelectorAll('.presenter-box');
+      boxes.forEach(box => {
+        box.classList.toggle('show', scriptVisible);
+      });
+      const btn = document.getElementById('scriptToggleBtn');
+      if (btn) btn.classList.toggle('active', scriptVisible);
     }
 
     function toggleFullScreen() {
@@ -893,6 +929,19 @@
       }
     }
 
+    function switchDataTab(tabIndex) {
+      const tabBtns = document.querySelectorAll('.data-tab-btn');
+      const panels = document.querySelectorAll('.data-panel');
+
+      tabBtns.forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === tabIndex);
+      });
+
+      panels.forEach((p, idx) => {
+        p.classList.toggle('active', idx === tabIndex);
+      });
+    }
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
@@ -900,8 +949,8 @@
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
         prevSlide();
-      } else if (e.key === 'n' || e.key === 'N') {
-        toggleSpeakerNotes();
+      } else if (e.key === 't' || e.key === 'T') {
+        toggleAllPresenterBoxes();
       } else if (e.key === 'f' || e.key === 'F') {
         toggleFullScreen();
       }
